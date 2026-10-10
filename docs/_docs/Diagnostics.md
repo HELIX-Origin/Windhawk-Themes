@@ -23,7 +23,7 @@ The toolchain operates strictly within an approved set of shell processes:
 | Process | UI Surface | Framework |
 |---|---|---|
 | `StartMenuExperienceHost.exe` | Windows Start Menu | UWP / WinUI 2 |
-| `SearchHost.exe` / `SearchApp.exe` | Windows Search & Web Search | UWP / WinUI 2 |
+| `SearchHost.exe`<br>`SearchApp.exe` | Windows Search & Web Search | UWP / WinUI 2 |
 | `ShellExperienceHost.exe` | Action Center / Notifications (Win11 21H2–23H2) | UWP `Windows.UI.Xaml` |
 | `ShellHost.exe` | Action Center / Quick Settings (Win11 24H2) | UWP `Windows.UI.Xaml` |
 | `SystemSettings.exe` | Windows 11 Settings App | UWP / WinUI 2/3 |

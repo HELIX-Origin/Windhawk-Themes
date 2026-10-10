@@ -14,9 +14,9 @@ Comprehensive development and styling guide for the **Windows 11 Start Menu Styl
 
 | Specification Attribute | Detail | Technical Notes |
 |---|---|---|
-| **Mod ID** | `windows-11-start-menu-styler` | Official Windhawk repository mod |
+| **Windhawk Mod** | Start Menu Styler | Official Windhawk repository mod |
 | **Target Process** | `StartMenuExperienceHost.exe` | Isolated UWP app package hosting the Start flyout |
-| **Secondary Process** | `SearchHost.exe` / `SearchApp.exe` | Handles search input suggestions and WebView2 web views |
+| **Secondary Process** | `SearchHost.exe`<br>`SearchApp.exe` | Handles search input suggestions and WebView2 web views |
 | **XAML Framework** | `Windows.UI.Xaml` | Standard UWP runtime (WinUI 2.8+ primitives) |
 | **Windhawk Mod Floor** | `v1.7+` | Direct `WindhawkBlur` composition support introduced in v1.2+ |
 | **Live Reload Capability** | Supported | Configuration changes apply dynamically without restarting the host |

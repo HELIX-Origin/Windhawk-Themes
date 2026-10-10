@@ -14,7 +14,7 @@ Comprehensive development and styling guide for the **Windows 11 Settings Styler
 
 | Specification Attribute | Detail | Technical Notes |
 |---|---|---|
-| **Mod ID** | `windows-11-settings-styler` | Official Windhawk repository mod |
+| **Windhawk Mod** | Settings Styler | Official Windhawk repository mod |
 | **Target Process** | `SystemSettings.exe` | Main Windows 11 Settings application host |
 | **XAML Framework** | `Windows.UI.Xaml` | UWP / WinUI XAML framework |
 | **Windhawk Mod Floor** | `v1.0+` | Direct composition and `WindhawkBlur` support |

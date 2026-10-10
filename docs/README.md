@@ -44,13 +44,13 @@ Welcome to the **Windhawk Themes** engineering documentation. This site covers t
 
 ## 📦 Supported Windhawk Mods
 
-| Mod | Mod ID | Process | Framework | Status |
-|---|---|---|---|---|
-| **Start Menu Styler** | `windows-11-start-menu-styler` | `StartMenuExperienceHost.exe` | UWP / WinUI 2 | ✅ Reference supported |
-| **Taskbar Styler** | `windows-11-taskbar-styler` | `explorer.exe` | WinUI 3 / XAML | ✅ Reference supported |
-| **Notification Center Styler** | `windows-11-notification-center-styler` | `ShellExperienceHost.exe` / `ShellHost.exe` | UWP `Windows.UI.Xaml` | ✅ Reference supported |
-| **Settings Styler** | `windows-11-settings-styler` | `SystemSettings.exe` | UWP / WinUI `Windows.UI.Xaml` | 🌐 In base scope |
-| **File Explorer Styler** | `windows-11-file-explorer-styler` | `explorer.exe` | WinUI 3 `Microsoft.UI.Xaml` | ⏸️ Deferred (Milestone M.03) |
+| Windhawk Mod | Process | Framework | Status |
+|---|---|---|---|
+| **Start Menu Styler** | `StartMenuExperienceHost.exe` | UWP / WinUI 2 | ✅ Reference supported |
+| **Taskbar Styler** | `explorer.exe` | WinUI 3 / XAML | ✅ Reference supported |
+| **Notification Center Styler** | `ShellExperienceHost.exe`<br>`ShellHost.exe` | UWP `Windows.UI.Xaml` | ✅ Reference supported |
+| **Settings Styler** | `SystemSettings.exe` | UWP / WinUI `Windows.UI.Xaml` | 🌐 In base scope |
+| **File Explorer Styler** | `explorer.exe` | WinUI 3 `Microsoft.UI.Xaml` | ⏸️ Deferred (Milestone M.03) |
 
 ---
 

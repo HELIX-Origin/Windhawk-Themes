@@ -14,7 +14,7 @@ Comprehensive development and styling guide for the **Windows 11 Taskbar Styler*
 
 | Specification Attribute | Detail | Technical Notes |
 |---|---|---|
-| **Mod ID** | `windows-11-taskbar-styler` | Official Windhawk repository mod |
+| **Windhawk Mod** | Taskbar Styler | Official Windhawk repository mod |
 | **Target Process** | `explorer.exe` | Main Windows shell process hosting the taskbar |
 | **XAML Framework** | `Microsoft.UI.Xaml` | Modern WinUI 3 XAML island runtime |
 | **Windhawk Mod Floor** | `v1.10+` | DirectComposition glass and visual state injection |

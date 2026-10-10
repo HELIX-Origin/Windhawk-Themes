@@ -14,7 +14,7 @@ Comprehensive development and styling guide for the **Windows 11 File Explorer S
 
 | Specification Attribute | Detail | Technical Notes |
 |---|---|---|
-| **Mod ID** | `windows-11-file-explorer-styler` | Official Windhawk repository mod |
+| **Windhawk Mod** | File Explorer Styler | Official Windhawk repository mod |
 | **Target Process** | `explorer.exe` | Windows Explorer process hosting File Explorer windows (`CabinetWClass`) |
 | **XAML Framework** | `Microsoft.UI.Xaml` | Modern WinUI 3 runtime for top chrome |
 | **Classic Shell Scope** | Win32 `DirectUIHWND` | Folder file list and tree view (styled via DWM attributes) |

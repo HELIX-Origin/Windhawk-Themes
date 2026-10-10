@@ -60,7 +60,7 @@ Each styler mod runs inside a distinct Windows host process and operates within 
 |---|---|---|
 | **Start Menu** | `StartMenuExperienceHost.exe` | UWP / WinUI 2 (`Windows.UI.Xaml`) |
 | **Taskbar** | `explorer.exe` | WinUI 3 / XAML |
-| **Notification Center & Quick Settings** | `ShellExperienceHost.exe` / `ShellHost.exe` | UWP `Windows.UI.Xaml` |
+| **Notification Center & Quick Settings** | `ShellExperienceHost.exe`<br>`ShellHost.exe` | UWP `Windows.UI.Xaml` |
 | **Settings** | `SystemSettings.exe` | UWP / WinUI `Windows.UI.Xaml` |
 | **File Explorer** | `explorer.exe` | WinUI 3 `Microsoft.UI.Xaml` |
 

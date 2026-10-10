@@ -14,7 +14,7 @@ Comprehensive development and styling guide for the **Windows 11 Notification Ce
 
 | Specification Attribute | Detail | Technical Notes |
 |---|---|---|
-| **Mod ID** | `windows-11-notification-center-styler` | Official Windhawk repository mod |
+| **Windhawk Mod** | Notification Center Styler | Official Windhawk repository mod |
 | **Target Process (Win11 21H2–23H2)** | `ShellExperienceHost.exe` | Classic UWP shell experience host |
 | **Target Process (Win11 24H2 build 26100+)** | `ShellHost.exe` | Dedicated Quick Settings and shell flyout host |
 | **XAML Framework** | `Windows.UI.Xaml` | Standard UWP runtime |

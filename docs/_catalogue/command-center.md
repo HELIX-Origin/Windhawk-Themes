@@ -40,13 +40,13 @@ The **Command Center Suite** is our premier unified theme suite implementing the
 
 ## 🔍 Supported Surface Mods
 
-| Styler Mod | Mod ID | Targeted Surface | Status |
-|---|---|---|---|
-| **Windows 11 Taskbar Styler** | `windows-11-taskbar-styler` | Taskbar panel, system tray, running app buttons | ✅ Shipped Reference |
-| **Windows 11 Start Menu Styler** | `windows-11-start-menu-styler` | Start menu frame, pinned grid, all apps, search pill | ✅ Shipped Reference |
-| **Windows 11 Notification Center Styler** | `windows-11-notification-center-styler` | Action center, quick settings flyout, calendar grid | ✅ Shipped Reference |
-| **Windows 11 Settings Styler** | `windows-11-settings-styler` | Navigation sidebar, card views, settings search | 🌐 In Base Scope |
-| **Windows 11 File Explorer Styler** | `windows-11-file-explorer-styler` | Tabs, address bar, navigation tree | ⏸️ Deferred (M.03) |
+| Windhawk Mod | Targeted Surface | Status |
+|---|---|---|
+| **Taskbar Styler** | Taskbar panel, system tray, running app buttons | ✅ Shipped Reference |
+| **Start Menu Styler** | Start menu frame, pinned grid, all apps, search pill | ✅ Shipped Reference |
+| **Notification Center Styler** | Action center, quick settings flyout, calendar grid | ✅ Shipped Reference |
+| **Settings Styler** | Navigation sidebar, card views, settings search | 🌐 In Base Scope |
+| **File Explorer Styler** | Tabs, address bar, navigation tree | ⏸️ Deferred (M.03) |
 
 ---
 

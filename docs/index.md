@@ -65,7 +65,7 @@ The framework targets five base official Windhawk styler mods covering primary W
 <thead>
 <tr>
 <th>Surface</th>
-<th>Windhawk Mod ID</th>
+<th>Windhawk Mod</th>
 <th>Target Process</th>
 <th>Framework</th>
 <th>Documentation</th>
@@ -74,35 +74,35 @@ The framework targets five base official Windhawk styler mods covering primary W
 <tbody>
 <tr>
 <td><strong>Start Menu</strong></td>
-<td><code>windows-11-start-menu-styler</code></td>
+<td>Start Menu Styler</td>
 <td><code>StartMenuExperienceHost.exe</code></td>
 <td>UWP / WinUI 2</td>
 <td><a href="{{ '/docs/Start-Menu/' | relative_url }}">Start Menu Guide →</a></td>
 </tr>
 <tr>
 <td><strong>Taskbar</strong></td>
-<td><code>windows-11-taskbar-styler</code></td>
+<td>Taskbar Styler</td>
 <td><code>explorer.exe</code></td>
 <td>WinUI 3 / XAML</td>
 <td><a href="{{ '/docs/Taskbar/' | relative_url }}">Taskbar Guide →</a></td>
 </tr>
 <tr>
 <td><strong>Notification Center</strong></td>
-<td><code>windows-11-notification-center-styler</code></td>
-<td><code>ShellExperienceHost.exe</code> / <code>ShellHost.exe</code></td>
+<td>Notification Center Styler</td>
+<td><code>ShellExperienceHost.exe</code><br><code>ShellHost.exe</code></td>
 <td>UWP <code>Windows.UI.Xaml</code></td>
 <td><a href="{{ '/docs/Notification-Center/' | relative_url }}">Notification Center Guide →</a></td>
 </tr>
 <tr>
 <td><strong>Settings</strong></td>
-<td><code>windows-11-settings-styler</code></td>
+<td>Settings Styler</td>
 <td><code>SystemSettings.exe</code></td>
 <td>UWP / WinUI <code>Windows.UI.Xaml</code></td>
 <td><a href="{{ '/docs/Settings/' | relative_url }}">Settings Guide →</a></td>
 </tr>
 <tr>
 <td><strong>File Explorer</strong></td>
-<td><code>windows-11-file-explorer-styler</code></td>
+<td>File Explorer Styler</td>
 <td><code>explorer.exe</code></td>
 <td>WinUI 3 <code>Microsoft.UI.Xaml</code></td>
 <td><a href="{{ '/docs/File-Explorer/' | relative_url }}">File Explorer Guide →</a></td>
