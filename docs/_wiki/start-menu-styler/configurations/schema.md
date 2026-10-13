@@ -57,7 +57,7 @@ The `styleConstants` list defines design tokens referenced throughout `controlSt
    * **Blur & Glass Foundations**: Base `WindhawkBlur` brushes.
    * **Gradient Borders**: Top-lit rim lighting brushes (`LinearGradientBrush`).
    * **Card & Tile Fills**: Translucent fills and overlays (`AcrylicBrush`, `SolidColorBrush`).
-   * **Geometric Scale**: Border thicknesses and radius scale (`PanelRadius`, `CardRadius`, `ChipRadius`).
+   * **Geometric Scale**: Border thicknesses and radius scale (`CornerRadius`, `SearchBoxRadius`, `HoverCornerRadius`, `ElementCornerRadius`, `FlyoutCornerRadius`).
 
 ### Concrete XAML Material Examples in `styleConstants`
 
@@ -79,10 +79,11 @@ styleConstants:
 
 #### C. Proportional Radius Scale
 ```yaml
-  - PanelRadius=35       # XL: Outermost flyout frame
-  - CardRadius=15        # M: Group cards, pinned background plates
-  - ChipRadius=10        # S: Action buttons, power pill, user tile
-  - SearchBoxRadius=25   # L: Top search pill
+  - CornerRadius=35        # XL: Outermost flyout frame
+  - SearchBoxRadius=25     # L: Top search pill
+  - HoverCornerRadius=15   # M: Hover surfaces and elevated cards
+  - ElementCornerRadius=10 # S: Action buttons, cards, tiles, tooltips
+  - FlyoutCornerRadius=6   # XS: Flyouts, context menus, jump lists
 ```
 
 ---
@@ -112,7 +113,7 @@ The `controlStyles` block applies styling directives to XAML visual tree nodes d
 | `=` | `Height=32` | Assigns scalar value, enum, or string. |
 | `: =` | `Background:=$Background` | Inflates complex XAML objects (brushes, transforms, transitions). |
 | `:=` *(empty)* | `Shadow:=` | Resets or clears the target property to null/unspecified. |
-| `@VisualState` | `Background@PointerOver:=$OverlayColor` | Overrides property during specific visual states without full template re-authoring. |
+| `@VisualState` | `Background@PointerOver:=$Background` | Overrides property during specific visual states without full template re-authoring. |
 
 ---
 

@@ -22,6 +22,8 @@ github_url: https://github.com/HELIX-Origin/Windhawk-Themes/tree/main/projects/c
 
 The **Command Center Suite** is our premier unified theme suite implementing the signature **"Command Center Glass"** design language for Windows 11. Engineered with precision mathematical tokens, it eliminates visual dissonance across disconnected shell surfaces and replaces flat, opaque Windows 11 chrome with high-performance translucent glass materials.
 
+The suite spans floating taskbar pills, a Start Menu with separated-island flyouts and compact 2-column pinned categories, translucent Notification / Quick Settings panels, and the shell's context menus, folder modal, and Snap Layout picker — all driven by one shared token set.
+
 ---
 
 ## ✨ Design Pillars
@@ -29,11 +31,12 @@ The **Command Center Suite** is our premier unified theme suite implementing the
 - **Unified Frosted Blur**: Consistent `WindhawkBlur` (base `BlurAmount="20"`, tinted dynamically via `{ThemeResource SystemChromeMediumColor}`) establishes a solid frosted glass base across all shell panes.
 - **Top-Lit Specular Rim**: Signature multi-stop vertical gradient border (`#60808080` → `#50404040` → `#40808080`) with physical glass edge lighting (`BorderThickness="0.3,1,0.3,1"`).
 - **Proportional Radii Hierarchy**: Strict radius tiers matching Windows 11 Fluent guidelines:
-  - **XL (35px)**: Top-level flyout root containers (Start Menu, Notification Center flyouts).
-  - **L (25px)**: Prominent input pills and search bars.
-  - **M (15px)**: Grouping containers and secondary cards.
-  - **S (10px)**: Action tiles, buttons, calendar cells.
-  - **XS (6px)**: Context menus and tooltips.
+  - **XL (35px)**: Top-level panel frames and flyout hosts (Start Menu, Lock screen widgets, folder modal).
+  - **L (25px)**: Search pills and large input surfaces.
+  - **M (15px)**: Hover surfaces and elevated cards.
+  - **S (10px)**: Tiles, buttons, list rows, and tooltips.
+  - **XS (6px)**: Flyouts, context menus, and jump lists.
+- **Accent-Aware States**: `SystemAccentColor` drives active running indicators, volume / brightness HUD fills, and Lock screen clock highlights so interactive states track the user's system accent.
 - **Intentional Layering**: Collapses distracting native drop shadows and heavy opaque overlays to let translucent glass cards float cleanly.
 
 ---
@@ -42,9 +45,9 @@ The **Command Center Suite** is our premier unified theme suite implementing the
 
 | Windhawk Mod | Targeted Surface | Status |
 |---|---|---|
-| **Taskbar Styler** | Taskbar panel, system tray, running app buttons | ✅ Shipped Reference |
-| **Start Menu Styler** | Start menu frame, pinned grid, all apps, search pill | ✅ Shipped Reference |
-| **Notification Center Styler** | Action center, quick settings flyout, calendar grid | ✅ Shipped Reference |
+| **Taskbar Styler** | Taskbar panel, system tray, taskbar flyouts, Snap Layout picker, virtual desktop bar | ✅ Shipped Reference |
+| **Start Menu Styler** | Start Menu frame, pinned grid, all apps, search pill, shell flyouts & context menus, folder modal, Lock screen | ✅ Shipped Reference |
+| **Notification Center Styler** | Action center, Quick Settings flyout, calendar grid | ✅ Shipped Reference |
 | **Settings Styler** | Navigation sidebar, card views, settings search | 🌐 In Base Scope |
 | **File Explorer Styler** | Tabs, address bar, navigation tree | ⏸️ Deferred (M.03) |
 

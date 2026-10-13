@@ -43,7 +43,7 @@ For exhaustive technical reference documentation, explore the dedicated subcateg
 ## 3. High-Level Hierarchy & Key Control Anchors
 
 1. **Floating Dock Construction**:
-   * `Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid`: Applying `Margin=8,4,8,4` and `CornerRadius=$CornerRadiusAlt1` detaches the taskbar from the display edges, transforming it into a floating dock.
+   * `Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid`: Applying `Margin=8,4,8,4` and `CornerRadius=$R2` detaches the taskbar from the display edges, transforming it into a floating dock.
    * `Rectangle#BackgroundFill` and `Rectangle#BackgroundStroke`: The native solid color fill and top border stroke. Both must be collapsed (`Visibility=Collapsed` or `1`) to reveal the custom frosted blur foundation underneath.
 2. **App Button Visual State Matrix**:
    * Running apps are represented by `Taskbar.TaskListButtonPanel`. The `@CommonStates` visual state group can be targeted to deliver custom state lighting across `ActiveNormal`, `ActivePointerOver`, `ActivePressed`, `InactiveNormal`, `InactivePointerOver`, and `MultiWindow` variants.
@@ -61,7 +61,7 @@ styleConstants:
   - Background=$Frosted
   - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
   - BorderThickness=0.3,1,0.3,1
-  - CornerRadiusAlt1=20
+  - R2=20
 
 controlStyles:
   # Floating taskbar dock background card
@@ -71,7 +71,7 @@ controlStyles:
       - Background:=$Background
       - BorderBrush:=$BorderBrush
       - BorderThickness=$BorderThickness
-      - CornerRadius=$CornerRadiusAlt1
+      - CornerRadius=$R2
 
   # Collapse native solid color fill and top stroke
   - target: Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid > Rectangle#BackgroundFill

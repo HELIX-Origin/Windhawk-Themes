@@ -52,7 +52,7 @@ The `styleConstants` list defines design tokens referenced throughout `controlSt
    * **Blur & Glass Foundations**: Base `WindhawkBlur` brushes.
    * **Gradient Borders**: Top-lit rim lighting brushes (`LinearGradientBrush`).
    * **Card & Tile Fills**: Translucent fills and overlays (`AcrylicBrush`, `SolidColorBrush`).
-   * **Geometric Scale**: Border thicknesses and radius scale (`CornerRadius`, `CornerRadiusAlt1`, `BaseHeight`, `BaseWidth`).
+   * **Geometric Scale**: Border thicknesses and radius scale (`R1`, `R2`, `Height`, `Width`).
 
 ### Concrete XAML Material Examples in `styleConstants`
 
@@ -64,14 +64,14 @@ styleConstants:
   - Acrylic=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
   - Background=$Frosted
   - OverlayColor=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - OverlayColorAlt=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - OverlayColor2=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
   - AccentColor=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
   - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
   - BorderThickness=0.3,1,0.3,1
-  - CornerRadius=6
-  - CornerRadiusAlt1=20
-  - BaseHeight=32
-  - BaseWidth=34
+  - R1=6
+  - R2=20
+  - Height=42
+  - Width=42
 ```
 
 ---
