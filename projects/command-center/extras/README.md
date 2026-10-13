@@ -1,6 +1,6 @@
 # 🧩 Extras & Companion Mod Configurations
 
-This directory contains curated companion mod configurations for the **Windhawk Command Center Suite**. While the base styler mods in [`src/`](../) define the foundational "Command Center Glass" surfaces (Taskbar, Start Menu, Notification Center, File Explorer), these companion configs extend the aesthetic into supplemental shell utilities, status indicators, dialogs, flyouts, and system UI behaviors.
+This directory contains curated companion mod configurations for the **Windhawk Command Center Suite**. While the base styler mods in [this suite](../) define the foundational "Command Center Glass" surfaces (Taskbar, Start Menu, Notification Center; File Explorer is deferred), these companion configs extend the aesthetic into supplemental shell utilities, status indicators, dialogs, flyouts, and system UI behaviors.
 
 ## Table of Contents
 
@@ -110,7 +110,7 @@ The companion set is intentionally scoped to augment the Command Center theme wi
 1. Open **Windhawk** → **Explore** tab.
 2. Search for and install the desired companion mod (e.g., *Taskbar Clock Customization*, *Dynamic Island for Windows*).
 3. Open the mod’s **Details → Settings** (Advanced/Textual mode as needed).
-4. Copy the entire contents of the matching YAML file from `src/extras/` and paste into the mod’s settings editor.
+4. Copy the entire contents of the matching YAML file from this `extras/` directory and paste into the mod's settings editor.
 5. Click **Save settings**. The configuration applies immediately (no Explorer/system restart required).
 
 ## Notes & Compatibility

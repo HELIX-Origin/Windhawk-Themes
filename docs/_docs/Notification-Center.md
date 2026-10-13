@@ -97,6 +97,6 @@ controlStyles:
 ## 4. Layered Glass Architecture
 
 In universal layered glass themes:
-1. Outer panels (`NotificationCenterGrid`, `CalendarCenterGrid`, `ControlCenterRegion`) use `WindhawkBlur` with `$Background` and specular `$BorderBrush` rims.
+1. Outer panels (`NotificationCenterGrid`, `CalendarCenterGrid`, `ControlCenterRegion`) use `WindhawkBlur` for the fill and a gradient brush for specular rims (set `Background` and `BorderBrush`).
 2. Native opaque drop shadows are collapsed (`Shadow:=`) and system backgrounds cleared.
-3. Internal cards (quick action tiles, sliders, and calendar day cells) layer `$ElementBackground` and `$CardRadius` (10px) to establish visual depth.
+3. Internal cards (quick action tiles, sliders, and calendar day cells) layer a translucent `Background` and their own `CornerRadius` to establish visual depth.

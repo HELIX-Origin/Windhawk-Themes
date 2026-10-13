@@ -14,7 +14,7 @@ The **Windhawk Themes** repository provides the scaffolding, engineering standar
 
 When engineering theme suites for Windhawk, this repository equips you with:
 1. **Hybrid C++/Python Visual Tree Inspector**: Uses UI automation to wake shell processes and dump XAML trees to structured JSON for AI vibe coding without manual inspection burden.
-2. **Design Language & Evidence Standards**: Canonical "Command Center Glass" tokens, proportional radius scales, and an evidence protocol requiring selectors sourced from official reference material.
+2. **Design Language & Evidence Standards**: Canonical design-token conventions, proportional radius scales, and an evidence protocol requiring selectors sourced from official reference material.
 3. **Automated Static Quality Gate**: `tools/Test-WindhawkStyles.ps1` verifies YAML syntax, constant ordering, and token references across all projects.
 4. **Universal Surface Target Reference**: Empirical selector documentation across the 5 base Windhawk stylers and companion mods.
 

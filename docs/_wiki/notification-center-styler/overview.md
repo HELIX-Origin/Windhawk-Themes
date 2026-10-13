@@ -43,7 +43,7 @@ For in-depth technical reference documentation, explore the dedicated subcategor
 ## 3. High-Level Hierarchy & Key Control Anchors
 
 1. **Quick Settings Outer Frame (`Grid#ControlCenterRegion`)**:
-   * The foundation glass canvas. Setting `Background:=$Background`, `BorderBrush:=$BorderBrush`, and `Shadow:=` collapses the system drop shadow and sets up the frosted panel.
+   * The foundation glass canvas. Setting the `Background` and `BorderBrush` properties, plus `Shadow:=`, collapses the system drop shadow and sets up the frosted panel.
 2. **Preventing Double-Blur Artifacts**:
    * Windows renders an internal solid plate: `ControlCenter.ControlCenterView > Grid#RootGrid > Border#RootGridBorder`. Clearing this element to `Background:=Transparent` is essential to prevent muddy visuals.
 3. **Multi-State Quick Action Tiles**:
@@ -58,22 +58,25 @@ For in-depth technical reference documentation, explore the dedicated subcategor
 
 ## 4. Key Recipes: Applying Frosted Glass to Quick Settings
 
+> [!NOTE]
+> Names and values below are placeholders — define your own tokens.
+
 ```yaml
 styleConstants:
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Background=$Frosted
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
-  - PanelRadius=13
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8            # illustrative — choose your own scale
 
 controlStyles:
   # Quick Settings outer frame
   - target: Grid#ControlCenterRegion
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$PanelRadius
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
       - Shadow:=
 
   # Clear inner plate to prevent double-blur

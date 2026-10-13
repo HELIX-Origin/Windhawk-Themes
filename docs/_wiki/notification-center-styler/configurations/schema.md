@@ -55,31 +55,35 @@ python tools/inspect_xaml.py -p ShellHost.exe --find ControlCenterRegion
 
 ## 3. Deep Dive: `styleConstants` Token Mechanics
 
-Tokens in `windows-11-notification-center-styler` define reusable design values across visual targets:
+Tokens in `windows-11-notification-center-styler` define reusable design values across visual targets.
+
+### Illustrative `styleConstants` Examples
+
+> [!NOTE]
+> The names and values below are placeholders — define your own tokens. What matters is the shape of each declaration.
 
 ```yaml
 styleConstants:
   # Blur & Glass Materials
-  - Translucent=<WindhawkBlur BlurAmount="15" TintColor="#10808080"/>
-  - Glass=<WindhawkBlur BlurAmount="5" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Acrylic=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
-  - Background=$Frosted
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="#10808080"/>
+  - MySurfaceFill=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MyOverlay=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
+  - MyBackground=$MySurfaceFill
   
   # Border Lighting & Accents
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderBrush2=<WindhawkBlur BlurAmount="10" TintColor="#909090" TintOpacity="0.3"/>
-  - OverlayColor=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - OverlayColor2=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - AccentColor=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - ElementBackground=<SolidColorBrush Color="{ThemeResource SystemAltLowColor}" Opacity="0.25" />
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MySoftBrush=<WindhawkBlur BlurAmount="8" TintColor="#909090" TintOpacity="0.3"/>
+  - MyOverlayFill=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - MyHoverFill=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - MyAccentFill=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - MyElementFill=<SolidColorBrush Color="{ThemeResource SystemAltLowColor}" Opacity="0.25" />
   
   # Geometric Scale
-  - BorderThickness=0.3,1,0.3,1
-  - PanelRadius=13       # XL: Outermost flyout frame
-  - CardRadius=10        # M: Quick action tiles, media card, calendar header
-  - ChipRadius=6         # S: Repeat buttons, chevron buttons, back button
-  - thumbnailImageSize=70
+  - MyRimThickness=0,1,0,1
+  - MyRadiusLarge=16       # Outermost flyout frame
+  - MyRadius=8             # Cards, tiles, and headers
+  - MyRadiusSmall=4        # Buttons and small controls
+  - MyImageSize=42
 ```
 
 ---
@@ -93,10 +97,10 @@ To prevent double-blurring:
    ```yaml
    - target: Grid#ControlCenterRegion
      styles:
-       - Background:=$Background
-       - BorderBrush:=$BorderBrush
-       - BorderThickness=$BorderThickness
-       - CornerRadius=$PanelRadius
+       - Background:=$MySurfaceFill
+       - BorderBrush:=$MyRimBrush
+       - BorderThickness=$MyRimThickness
+       - CornerRadius=$MyRadiusLarge
        - Shadow:=
    ```
 2. Collapse or clear the internal plate:

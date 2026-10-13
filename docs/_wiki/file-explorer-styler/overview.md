@@ -48,13 +48,16 @@ For in-depth technical reference documentation, explore the dedicated subcategor
 2. **WinUI 3 Tab Control (`FileExplorerExtensions.FileExplorerTabControl`)**:
    * Houses the open folder tabs. Individual tabs (`TabViewItem`) feature visual states (`Normal`, `PointerOver`, `Selected`, `Pressed`) that can be styled into floating glass pills.
 3. **Address Bar & Search Box**:
-   * `Grid#FileExplorerAddressBarGrid` and `AutoSuggestBox#FileExplorerSearchBox` can be styled with frosted fills, subtle rim borders, and rounded corners (`CornerRadius=6`).
+   * `Grid#FileExplorerAddressBarGrid` and `AutoSuggestBox#FileExplorerSearchBox` can be styled with frosted fills, subtle rim borders, and rounded corners (set `CornerRadius`).
 4. **Command Bar Toolbar (`CommandBar#FileExplorerCommandBar`)**:
    * Modern replacement for the classic ribbon containing Cut, Copy, Paste, Share, and Delete actions.
 
 ---
 
 ## 4. Key Recipes: Applying Translucent Glass to File Explorer
+
+> [!NOTE]
+> Names and values below are placeholders — define your own tokens.
 
 ```yaml
 # Enable whole-window Acrylic blur via DWM
@@ -63,25 +66,26 @@ backgroundTranslucentEffectRegion: ""
 explorerFrameContainerHeight: 0
 
 styleConstants:
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Background=$Frosted
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8            # illustrative — choose your own scale
 
 controlStyles:
   # Floating address bar pill
   - target: Grid#FileExplorerAddressBarGrid
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=6
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 
   # Search box pill
   - target: AutoSuggestBox#FileExplorerSearchBox > Grid#LayoutRoot > TextBox#TextBox
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=6
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 ```

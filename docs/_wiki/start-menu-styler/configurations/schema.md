@@ -51,39 +51,38 @@ The `styleConstants` list defines design tokens referenced throughout `controlSt
 
 ### Declaration Invariants
 1. **List of Strings**: Each constant entry must be formatted as `TokenName=Value` or `TokenName:=<XAML>`.
-2. **No Leading `$` in Declarations**: Writing `-$Background=...` is invalid; write `- Background=...`.
+2. **No Leading `$` in Declarations**: Writing `-$MyToken=...` is invalid; write `- MyToken=...`.
 3. **No Direct Nested Constant Declarations**: A constant cannot define another constant inside its value assignment (e.g. `BorderThickness=$OtherThickness` is unsupported in declaration blocks).
 4. **Ordering Convention**: Per repository engineering standards, constants must be organized in clean hierarchical blocks:
    * **Blur & Glass Foundations**: Base `WindhawkBlur` brushes.
    * **Gradient Borders**: Top-lit rim lighting brushes (`LinearGradientBrush`).
    * **Card & Tile Fills**: Translucent fills and overlays (`AcrylicBrush`, `SolidColorBrush`).
-   * **Geometric Scale**: Border thicknesses and radius scale (`CornerRadius`, `SearchBoxRadius`, `HoverCornerRadius`, `ElementCornerRadius`, `FlyoutCornerRadius`).
+   * **Geometric Scale**: Border thicknesses, radii, and fixed dimensions.
 
-### Concrete XAML Material Examples in `styleConstants`
+### Illustrative `styleConstants` Examples
 
-#### A. Unified Frosted Glass (`WindhawkBlur`)
+> [!NOTE]
+> The names and values below are placeholders — define your own tokens. What matters is the shape of each declaration.
+
+#### A. Blur / Glass Brush (`WindhawkBlur`)
 ```yaml
 styleConstants:
-  - Translucent=<WindhawkBlur BlurAmount="15" TintColor="#10808080"/>
-  - Glass=<WindhawkBlur BlurAmount="5" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Acrylic=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
-  - Background=$Frosted
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
 ```
 
-#### B. Top-Lit Rim Lighting Gradient
+#### B. Gradient Rim Border
 ```yaml
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
 ```
 
-#### C. Proportional Radius Scale
+#### C. Radius & Dimension Constants
 ```yaml
-  - CornerRadius=35        # XL: Outermost flyout frame
-  - SearchBoxRadius=25     # L: Top search pill
-  - HoverCornerRadius=15   # M: Hover surfaces and elevated cards
-  - ElementCornerRadius=10 # S: Action buttons, cards, tiles, tooltips
-  - FlyoutCornerRadius=6   # XS: Flyouts, context menus, jump lists
+  - MyRadius=8            # illustrative — choose your own scale
+  - MyRadiusLarge=16
+  - MyWidth=42
+  - MyHeight=42
 ```
 
 ---
@@ -111,9 +110,9 @@ The `controlStyles` block applies styling directives to XAML visual tree nodes d
 | Operator | Syntax Example | Behavior |
 |---|---|---|
 | `=` | `Height=32` | Assigns scalar value, enum, or string. |
-| `: =` | `Background:=$Background` | Inflates complex XAML objects (brushes, transforms, transitions). |
+| `:=` | `Background:=$MyFill` | Inflates complex XAML objects (brushes, transforms, transitions). |
 | `:=` *(empty)* | `Shadow:=` | Resets or clears the target property to null/unspecified. |
-| `@VisualState` | `Background@PointerOver:=$Background` | Overrides property during specific visual states without full template re-authoring. |
+| `@VisualState` | `Background@PointerOver:=$MyFill` | Overrides property during specific visual states without full template re-authoring. |
 
 ---
 

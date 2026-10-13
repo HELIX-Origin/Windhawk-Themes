@@ -17,14 +17,14 @@ Rather than applying ad-hoc visual tweaks that look inconsistent or break across
 ```mermaid
 flowchart TD
     Core["Unified Shell Architecture"]
-    Core --> Pillar1["1. Unified Frosted Blur\n(WindhawkBlur 20 + Theme Tint)"]
+    Core --> Pillar1["1. Unified Frosted Blur\n(WindhawkBlur + Theme Tint)"]
     Core --> Pillar2["2. Top-Lit Specular Rim\n(LinearGradientBrush Border)"]
-    Core --> Pillar3["3. Proportional Radii Scale\n(XL 35 down to XS 6)"]
+    Core --> Pillar3["3. Proportional Radii Scale\n(Large Frames to Small Controls)"]
     Core --> Pillar4["4. Intentional Layering\n(Collapsed Native Chrome)"]
 ```
 
 ### 1. Unified Frosted Blur
-- The base panel surface uses the direct composition `WindhawkBlur` shader with an amount of `20`.
+- The base panel surface uses the direct composition `WindhawkBlur` shader to blur the desktop behind the panel.
 - Tints dynamically derive from `{ThemeResource SystemChromeMediumColor}` (panels) or `{ThemeResource SystemAltLowColor}` (cards and flyouts) so the surface adapts seamlessly between light and dark Windows themes.
 
 ### 2. Top-Lit Glass Rim
@@ -32,23 +32,17 @@ flowchart TD
   ```yaml
   BorderBrush:=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
     <GradientStop Color="#60808080" Offset="0.0"/>
-    <GradientStop Color="#50404040" Offset="0.5"/>
     <GradientStop Color="#40808080" Offset="1.0"/>
   </LinearGradientBrush>
   ```
-- Specular thickness is asymmetric (`0.3,1,0.3,1`), giving the physical illusion of ambient light catching the upper and lower edges of glass sheets.
+- Specular thickness is asymmetric (`0,1,0,1`), giving the physical illusion of ambient light catching the upper and lower edges of glass sheets.
 
 ### 3. Harmonized Radii Scale
-Corner radii strictly follow a proportional scale hierarchy:
-- **XL (35px)**: Top-level root flyout frames (Start Menu, Notification Center, Calendar grid).
-- **L (25px)**: Search boxes and prominent input pills.
-- **M (15px)**: Section grouping containers and secondary flyout cards.
-- **S (10px)**: Interactive action tiles, buttons, toast cards, and day cells.
-- **XS (6px)**: Context menus, tooltips, and compact indicator badges.
+Corner radii follow a proportional hierarchy rather than one value applied everywhere — a larger radius on top-level frames and flyout hosts, tapering down to small radii on search boxes, cards, tiles, buttons, and compact controls such as context menus and tooltips. Choosing your own ratio between the largest and smallest radius keeps nested surfaces visually consistent.
 
 ### 4. Intentional Layering & Collapsed Chrome
 - Native Windows 11 chrome features heavy opaque background fills and aggressive hard drop shadows that muddy translucent themes.
-- Our styles deliberately collapse native shadows (`Shadow:=`, `BorderThickness=0`) and set opaque panel fills to transparent (`Visibility=1` or `Background:=Transparent`), allowing our high-performance glass panes and layered frosted cards to float crisply.
+- A translucent theme typically collapses native shadows (`Shadow:=`, `BorderThickness=0`) and sets opaque panel fills to transparent (`Visibility=1` or `Background:=Transparent`), letting the glass panes and layered cards float crisply.
 
 ---
 

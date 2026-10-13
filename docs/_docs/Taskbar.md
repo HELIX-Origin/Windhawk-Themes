@@ -91,15 +91,15 @@ Taskbar button hover and active states are targeted using `@CommonStates`:
 ```yaml
 - target: TaskListButtonPanel@CommonStates > Grid > Border#BackgroundElement
   styles:
-    - Background@PointerOver:=$OverlayColor2
-    - Background@Pressed:=$OverlayColor
-    - CornerRadius=$CornerRadius
+    - Background@PointerOver:=$MyOverlayAlt
+    - Background@Pressed:=$MyOverlay
+    - CornerRadius=$MyRadius
 ```
 Active running apps receive an emphasized bottom indicator bar:
 ```yaml
 - target: Border#ActiveIndicator
   styles:
-    - Background:=$AccentColor
+    - Background:=$MyAccentFill
     - CornerRadius=2
     - Height=3
 ```

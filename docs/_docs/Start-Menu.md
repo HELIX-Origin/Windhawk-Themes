@@ -57,7 +57,7 @@ webContentStyles:
 | Target Selector | Element Purpose |
 |---|---|
 | `Border#DropShadowDismissTarget` | Root drop-shadow frame surrounding the Start Menu flyout |
-| `Border#AcrylicBorder` | Main outer panel containing header and content cards |
+| `Border#AcrylicBorder` | System acrylic plate (main-menu instance collapsed; glass panel is `Grid#Root > Border`) |
 | `Border#AcrylicOverlay` | Two-tone split overlay hosting the navigation pane |
 | `Grid#NavPanePlaceholder` | Power button, user profile avatar, and system quick links |
 | `RightCompanion > Grid#CompanionRoot` | Floating companion flyout (e.g. Phone Link companion card) |
@@ -90,6 +90,6 @@ webContentStyles:
 ## 4. Separated-Island Architecture
 
 Modern custom themes frequently utilize a **separated-island architecture** on the Start Menu:
-1. The outer master frame (`Border#DropShadowDismissTarget`) is collapsed to transparent with zero border thickness.
-2. The top header and navigation elements render as distinct, floating frosted islands (`Border#AcrylicBorder` and `Border#AcrylicOverlay`).
+1. The outer master frame (`Border#DropShadowDismissTarget`) is collapsed (`Visibility=1`).
+2. The rounded glass panel is rendered by `Grid#Root > Border` (`Background:=$MySurfaceFill`, `CornerRadius=$MyRadius`); the main-menu and overlay acrylics (`Grid#MainMenu > Border#AcrylicBorder`, `Border#AcrylicOverlay`) are collapsed, while the companion-pane acrylic is styled.
 3. Companion panels (such as Phone Link) float alongside with matching specular rims without clipping against the main flyout.

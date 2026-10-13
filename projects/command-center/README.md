@@ -1,4 +1,4 @@
-# Windhawk Command Center Suite – Base Styles (`src/`)
+# Windhawk Command Center Suite – Base Styles
 
 This directory contains the core Windhawk Styler mod configurations that implement the **"Command Center Glass"** unified dark/light frosted-glass design language for Windows 11.
 
@@ -41,9 +41,9 @@ All active surfaces share the same canonical tokens and materials to preserve a 
 
 - **Unified Frosted Blur**: Consistent `WindhawkBlur` (base `BlurAmount="20"`, tinted via `{ThemeResource SystemChromeMediumColor}` with `TintOpacity="0.7"`) forms the foundation glass surface across shells.
 - **Top-Lit Glass Rim**: Signature vertical gradient border `LinearGradientBrush` from `#60808080` (top) → `#50404040` (mid) → `#40808080` (bottom) with `BorderThickness="0.3,1,0.3,1"`.
-- **Harmonized Radii Scale**: XL (35) for top-level panels, L (25) for search pills/large surfaces, M (15–13) for groups/cards, S (10) for tiles/buttons, XS (6) for chips/context menus.
+- **Harmonized Radii Scale**: XL (35) for Start Menu frames, L (25) for the Start search pill / (20) for taskbar confirmators, M (15 hover / 13 Notification Center panels) for groups/cards, S (10) for tiles/buttons/tooltips, XS (6) for chips/flyouts/menus.
 - **Intentional Glass Layering**: Frosted foundation surfaces host layered glassy cards, pills, tiles and subtle element backgrounds (`ElementBackground` with low opacity) to create depth/contrast and visual hierarchy.
-- **Minimal Native Chrome**: Native opaque fills, hard drop shadows, and heavy acrylic overlays are collapsed/hidden where they conflict with the glass treatment (e.g. drop shadows on Start/NC panels, some acrylic borders/overlays hidden).
+- **Minimal Native Chrome**: Native opaque fills, hard drop shadows, and heavy acrylic overlays are collapsed/hidden where they conflict with the glass treatment (e.g. taskbar `BackgroundFill`/`BackgroundStroke` and Start acrylic borders/overlays collapsed, drop shadows removed on Start/NC panels).
 - **Theme-Aware**: Uses system theme resources (`SystemChromeMediumColor`, `SystemAltLowColor`, `SystemAccentColor`, `CardStrokeColorDefaultSolid`) with AcrylicBrush fallbacks to remain readable in light/dark.
 
 ## Canonical Design Tokens
@@ -59,36 +59,42 @@ All active surfaces share the same canonical tokens and materials to preserve a 
 
 ### Brushes & Colors
 
-| Token | Definition | Notes |
-|---|---|---|
-| `Background` | `$Frosted` | Canonical panel background material |
-| `BorderBrush` | Vertical `LinearGradientBrush` (0,0)-(0,1): `#60808080` @0.0 → `#50404040` @0.25 → `#40808080` @1.0 | Top-lit glass rim |
-| `BorderBrush2` (Start/NC) | `WindhawkBlur BlurAmount="10" TintColor="#909090" TintOpacity="0.3"` | Alternate soft border treatment used on select surfaces |
-| `OverlayColor` | `AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}"` | Pointer-over/active state fill |
-| `OverlayColorAlt`/`OverlayColor2` | Lower luminosity variants (`0.5`) | Inactive/multi-window or alternate hover states |
-| `AccentColor` | `AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}"` | Accent-driven highlights (e.g. active running indicator) |
-| `ElementBackground` | `SolidColorBrush Color="{ThemeResource SystemAltLowColor}" Opacity="0.25"` | Layered inner cards/panels (calendar, control center pages, etc.) |
-| `ClockBG` (Start Menu) | `SolidColorBrush Color="{ThemeResource SystemAccentColor}" Opacity="1"` | Lock screen clock/date accent color |
-| `BorderThickness` | `0.3,1,0.3,1` | Thin top/bottom, slightly thicker sides (rim) |
+| Token | Definition | File(s) | Notes |
+|---|---|---|---|
+| `Background` | `$Frosted` | All | Canonical panel background material |
+| `BorderBrush` | Vertical `LinearGradientBrush` (0,0)-(0,1): `#60808080` @0.0 → `#50404040` @0.25 → `#40808080` @1.0 | All | Top-lit glass rim |
+| `BorderBrush2` | `WindhawkBlur BlurAmount="10" TintColor="#909090" TintOpacity="0.3"` | Start, NC | Alternate soft border treatment |
+| `OverlayColor` | `AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}"` | Taskbar, NC | Pointer-over/active state fill |
+| `OverlayColor2` | Same as `OverlayColor` but `TintLuminosityOpacity="0.5"` | Taskbar, NC | Inactive/multi-window or alternate hover states |
+| `AccentColor` | `AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}"` | Taskbar, NC | Accent-driven highlights (checked toggles, active running indicator) |
+| `ActiveColor` | `AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="1" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}"` | Taskbar | Opaque active-state pill/indicator fill |
+| `ElementBackground` | `SolidColorBrush Color="{ThemeResource SystemAltLowColor}" Opacity="0.25"` | NC | Layered inner cards/panels (calendar, control center pages, toasts, etc.) |
+| `ClockBG` | `SolidColorBrush Color="{ThemeResource SystemAccentColor}" Opacity="1"` | Start | Lock screen clock/date accent color |
+| `BorderThickness` | `0.3,1,0.3,1` | All | Thin top/bottom, slightly thicker sides (rim) |
 
 ### Radii Scale
 
-| Token | Value | Applied To |
-|---|---|---|
-| `CornerRadius` (Taskbar base) | `6` | XS – buttons/chips and general small elements |
-| `CornerRadiusAlt1` (Taskbar) | `20` | L – taskbar background frame |
-| `CornerRadius` (Start Menu) | `35` | XL – top-level Start/Menu frames |
-| `PanelRadius` (Start/NC) | `15` (Start), `13` (NC) | M/L – main panels/frames |
-| `CardRadius` | `10` | S – cards/groups, inner panels |
-| `ChipRadius` | `6` | XS – chips, flyouts, jump lists |
-| `SearchBoxRadius` (Start) | `10` | S – search pill |
+| File | Token | Value | Applied To |
+|---|---|---|---|
+| Start Menu | `CornerRadius` | `35` | XL – top-level Start/Menu frames (`Grid#Root > Border`, widget/media frames, companion) |
+| Start Menu | `SearchBoxRadius` | `25` | L – Start search pill |
+| Start Menu | `HoverCornerRadius` | `15` | M – hover surfaces/cards (declared in the scale) |
+| Start Menu | `ElementCornerRadius` | `10` | S – buttons/tiles/list rows/tooltips |
+| Start Menu | `FlyoutCornerRadius` | `6` | XS – flyouts, menus, jump/overflow flyouts |
+| Taskbar | `R1` | `6` | XS/S – taskbar glass frame, button pills, icons, flyouts |
+| Taskbar | `R2` | `20` | L – volume/brightness confirmators, badges |
+| Notification Center | `PanelRadius` | `13` | L – Notification Center/Calendar/Control Center/main media panels |
+| Notification Center | `CardRadius` | `10` | S – cards, toasts, toggle buttons, list content |
+| Notification Center | `ChipRadius` | `6` | XS – chips, flyout presenters, jump-list items, footer buttons |
+
+> **Note:** Start Menu's `HoverCornerRadius` (`15`) is declared in `styleConstants` as the M-tier hover-surface radius; the current `controlStyles` express hover surfaces through the `$ElementCornerRadius` list/button templates, so it is reserved rather than directly referenced.
 
 ### Layout & Sizing
 
-| Token | Value | Notes |
-|---|---|---|
-| `BaseHeight`/`BaseWidth` (Taskbar) | `32` / `34` | Standardized icon/search button footprint |
-| `thumbnailImageSize` (NC) | `70` | Toast/thumbnail sizing |
+| File | Token | Value | Notes |
+|---|---|---|---|
+| Taskbar | `Height` / `Width` | `42` / `42` | Standardized taskbar button/icon footprint (referenced as `$Height`/`$Width`) |
+| Notification Center | `thumbnailImageSize` | `70` | Toast/thumbnail sizing |
 
 ## Base Mods
 
@@ -101,14 +107,14 @@ All active surfaces share the same canonical tokens and materials to preserve a 
 
 **Key styled surfaces:**
 
-- **Taskbar background frame** (`Taskbar.TaskbarFrame > ... TaskbarBackground > Grid`): `Margin=8,4,8,4`, `Background=$Frosted`, rim border, `CornerRadius=20`.
-- **Background fill/stroke visibility**: Ensures background fill and stroke elements remain visible with glass treatment.
-- **Hover/flyout background control**: Collapses/neutralizes hover flyout background to avoid double-layering (`Background/Border Transparent`, thickness 0).
-- **Task list buttons (labeled/icon states, multi-window/active/inactive)**: Per-state backgrounds (`ActiveNormal/PointerOver/Pressed`, `Inactive*`, `MultiWindow*`) using `$Background`/`$OverlayColor`/`$OverlayColorAlt`; rounded `6` with padding/margins for pill-like hit areas.
-- **Search icon button (`SearchUx.SearchUI.SearchIconButton` root grid)**: Glass background+rim, fixed `32x34` footprint, radius 6.
-- **Icon panels & labeled button panels**: Standardized `32x34`, radius 6, same state mapping as task list buttons.
-- **Start button (`ExperienceToggleButton#LaunchListButton[AutomationProperties.AutomationId=StartButton]`)**: Centered alignment, standardized size/padding/corner radius, Start icon scaled to 0.8x with centered transform origin.
-- **Running indicator**: Thin rounded bar (`RadiusX/Y=1.5`, height 2.5), width 10 → 18 when `ActiveRunningIndicator`, filled with `$OverlayColor`/`$AccentColor`.
+- **Taskbar glass panel** (`Taskbar.TaskbarBackground#HoverFlyoutBackgroundControl`): `Background=$Background`, rim (`BorderBrush=$BorderBrush`), `BorderThickness=0.3,1,0.3,1`, `CornerRadius=$R1` (`6`). The taskbar is **no longer a detached floating dock** — there is no margin and no large frame radius.
+- **Native background fill/stroke** (`Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid > Rectangle#BackgroundFill`, `Rectangle#BackgroundStroke`): both **collapsed** (`Visibility=1`) so the glass panel is the only visible taskbar background.
+- **Task list button pills** (`Taskbar.TaskListButtonPanel@CommonStates > ... Border#BackgroundElement`): Per-state backgrounds (`ActiveNormal/PointerOver/Pressed`, `Inactive*`, `MultiWindow*`) using `$ActiveColor`/`$OverlayColor`/`$OverlayColor2`/`$Background`, `CornerRadius=$R1`, `Padding=6`, `Margin=2` for pill-like hit areas.
+- **Search icon button** (`SearchUx.SearchUI.SearchIconButton > ... SearchButtonRootGrid#SearchBoxButtonRootPanel`): Glass background+rim, `CornerRadius=$R1`, `Height=$Height` (`42`); its nested `Border#BackgroundElement` is collapsed.
+- **Icon panels & labeled button panels** (`Grid#IconPanel@CommonStates > Border#BackgroundElement`, `Taskbar.TaskListLabeledButtonPanel@CommonStates > Border#BackgroundElement`): Standardized `$Height`/`$Width` (`42x42`), `CornerRadius=$R1`, same state mapping as task list buttons.
+- **Start button root panel** (`Taskbar.TaskListButtonPanel#ExperienceToggleButtonRootPanel`): Neutralized `TranslateTransform` (`0,0`).
+- **Running indicator** (`Grid#IconPanel@RunningIndicatorStates > Rectangle#RunningIndicator`, `Taskbar.TaskListLabeledButtonPanel@RunningIndicatorStates > Rectangle#RunningIndicator`): Thin rounded bar (`RadiusX/Y=1.5`, `Height=4`, `Width=12`), widening to `21` when `@ActiveRunningIndicator`; filled with `$ActiveColor` (`$AccentColor` when active).
+- **Overflow flyout** (`Grid#OverflowRootGrid > Border`): Transparent background/border with `BorderThickness=0` (no glass), `Padding=6`, shadow removed (`Shadow=`).
 
 **Notes:** Heavy use of `@CommonStates` and `@RunningIndicatorStates` with per-state `Background`/`Fill`/`Width` to preserve native state semantics while applying glass materials.
 
@@ -121,16 +127,20 @@ All active surfaces share the same canonical tokens and materials to preserve a 
 
 **Key styled surfaces:**
 
-- **Lock Screen clock/date**: Large centered time with transform group (translate/scale) and `Morganite SemiBold`; date positioned below with `vivo Sans EN VF`, both using `ClockBG` accent brush.
-- **Lock Screen widgets frame** (`Grid#WidgetFrameGrid`): Glass background+rim, `CornerRadius=35`.
-- **Widget canvas**: Centered with vertical translate for positioning.
-- **Lock Screen media transport/controls** (`Grid#MediaTransportControls`, `Grid#MediaControlsContainer`): Glass treatment, radius 35; container visibility adjusted and positioned (`RenderTransform` translate, margin 0).
-- **Start Menu foundation**: `StartDocked.StartSizingFrame` sized to `750x700`, `Grid#MainMenu` to `470x700`.
-- **Main menu panel chrome**: `Border#DropShadowDismissTarget` becomes the glass panel (`Background=$Frosted`, rim, `PanelRadius=15`, margin/padding 0). `AcrylicBorder`, `AcrylicOverlay`, drop shadows (`RootGridDropShadow`, `StartDropShadow`, `RightCompanionDropShadow`, `dropshadow`), and accent layer borders are collapsed (`Visibility=Collapsed`).
-- **Top search pill** (`StartMenu.SearchBoxToggleButton#SearchBoxToggleButton`): Centered `340x40`, glass background+rim, `SearchBoxRadius=10`. Placeholder text updated to `"Search This Precision"`.
-- **Taskbar search box (StartDocked)**: `Cortana.UI.Views.CortanaRichSearchBox#SearchTextBox` height 32 (max 32, centered), glass border+background, `ChipRadius=6`.
+- **Lock Screen clock/date**: Large centered time with transform group (translate/scale) and `Morganite SemiBold`; date positioned below with `vivo Sans EN VF`, both using the `ClockBG` accent brush.
+- **Lock Screen widgets frame** (`Grid#WidgetFrameGrid`): Glass background+rim, `CornerRadius=$CornerRadius` (`35`).
+- **Widget canvas** (`Grid#WidgetCanvasPanel`): Centered with vertical translate (`Y=50`) for positioning.
+- **Lock Screen media transport/controls** (`Grid#MediaTransportControls`, `Grid#MediaControlsContainer`): Glass treatment, `CornerRadius=$CornerRadius` (`35`); container visibility collapsed and positioned (`RenderTransform` translate `Y=-250`, margin 0).
+- **Start Menu foundation**: `StartDocked.StartSizingFrame` width `750`; `Grid#MainMenu` sized to `470x740`.
+- **Main menu glass panel**: `Grid#Root > Border` is the glass panel (`Background=$Background`, rim, `CornerRadius=$CornerRadius` (`35`)). `Border#DropShadowDismissTarget` is **collapsed** (`Visibility=1`) and is **not** the glass panel.
+- **Collapsed native chrome**: `Grid#MainMenu > Border#AcrylicBorder` is collapsed, while `Grid#CompanionRoot > Border#AcrylicBorder` is styled as glass (a more specific `StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot > Border#AcrylicBorder` rule additionally sets its `Visibility=1`); `Border#AcrylicOverlay`, the drop shadows (`RootGridDropShadow`, `StartDropShadow`, `RightCompanionDropShadow`, `dropshadow`), and the accent/layer borders (`AccentLayerBorder`, `LayerBorder`) are collapsed (`Visibility=1`).
+- **Top search pill** (`StartMenu.SearchBoxToggleButton#SearchBoxToggleButton`): Sized `350x50`; `Grid > Border#BorderElement` gets glass background+rim with `CornerRadius=$SearchBoxRadius` (`25`). Placeholder text updated to `"Search This Precision"`.
+- **Taskbar search box (StartDocked)** (`Cortana.UI.Views.CortanaRichSearchBox#SearchTextBox > Grid > Border#BorderElement`): Glass border+background with radius `6`.
+- **Flyouts, menus & overflow**: `FlyoutPresenter`/`MenuFlyoutPresenter` backgrounds, `MenuFlyoutItem`/`ToggleMenuFlyoutItem`, and `Border#OverflowFlyoutBackgroundBorder` use `CornerRadius=$FlyoutCornerRadius` (`6`).
+- **Tooltips** (`ToolTip > ContentPresenter#LayoutRoot`): Glass background+rim with `CornerRadius=$ElementCornerRadius` (`10`).
+- **Hover/list surfaces** (`ListViewItem` / `Button` / `ContentBorder` `#BackgroundBorder` / `#BorderBackground` templates): rim border with `CornerRadius=$ElementCornerRadius` (`10`).
 
-**Notes:** Mixes layout transforms/positioning (translate/scale) for Lock Screen visual composition and collapses multiple native shadows/overlays to favor the unified glass layer.
+**Notes:** Mixes layout transforms/positioning (translate/scale) for Lock Screen visual composition and collapses multiple native shadows/overlays/acrylic borders to favor the unified glass layer. `HoverCornerRadius` (`15`) is declared in `styleConstants` as the M-tier hover radius; current hover surfaces resolve through `$ElementCornerRadius`, so it is reserved rather than directly referenced.
 
 ### 3. `windows-11-notification-center-styler.yml`
 
@@ -150,8 +160,9 @@ All active surfaces share the same canonical tokens and materials to preserve a 
 - **Full-screen page window** (`QuickActions.ControlCenter.AccessibleWindow#PageWindow > ContentPresenter > Grid#FullScreenPageRoot`): Transparent background, shadows removed.
 - **Page header** (`FullScreenPageRoot > ContentPresenter#PageHeader`): Layered `ElementBackground` card, `CardRadius=10`, margins.
 - **List content** (`ScrollViewer#ListContent`): `ElementBackground` card, `CardRadius=10`, horizontal margins.
-- **Toasts** (`ActionCenter.FlexibleToastView#FlexibleNormalToastView`, `...#FlexibleActionsToastView`): Background set to transparent (glass is handled by container/parent layers).
-- **Toast elements**: App icon, progress bar, buttons, and selection elements receive glass/overlay treatments (e.g. `Border#ProgressBarTrack` → `ElementBackground` radius 6, `Button#SnoozeButton` → glass border+background radius 6, selection check border radius 4).
+- **Toggle/Split buttons** (`QuickActions.AccessibleToggleButton#ToggleButton`, `ControlCenter.PaginatedToggleButton#ToggleButton`, `#SplitL2Button`, `Button#SplitL2Button`): `CornerRadius=$CardRadius` with state backgrounds (`ElementBackground` → `OverlayColor2` → `OverlayColor`, checked → `AccentColor`).
+- **Media transport** (`Grid#MediaTransportControlsRegion`, `Grid#ThumbnailImage`): Glass panel with `PanelRadius=13`; thumbnail sized to `$thumbnailImageSize` (`70`) with `CardRadius=10`; previous/play-pause/next buttons use `OverlayColor2`/`AccentColor`/`OverlayColor` with `ChipRadius=6`.
+- **Toasts** (`ActionCenter.FlexibleToastView#FlexibleNormalToastView`): Background set to transparent, while the glass is applied to `Border#ToastBackgroundBorder` / `Border#ToastBackgroundBorder2` (`$Background`, rim, `CardRadius=10`).
 
 **Notes:** Emphasizes inner `ElementBackground` cards to create frosted layering inside the main glass panels; removes shadows and neutralizes some page backgrounds to let the unified glass show through.
 
@@ -169,26 +180,29 @@ All active surfaces share the same canonical tokens and materials to preserve a 
 
 ## Style Constants Reference
 
-All three active files define the same core constants (with small additive tokens where needed). Use `$Token` references in `styles` for consistency.
+All three active files define the same core constants (blur materials, `Background`, `BorderBrush`, `BorderThickness`) plus the additive tokens listed below. Use `$Token` references in `styles` for consistency.
 
-| Constant | Type | Purpose |
-|---|---|---|
-| `Translucent` | `WindhawkBlur` | Light blur accent |
-| `Glass` | `WindhawkBlur` | Ultra-light glass |
-| `Frosted` | `WindhawkBlur` | Base panel material |
-| `Acrylic` | `WindhawkBlur` | Strong blur |
-| `Background` | alias `$Frosted` | Canonical background |
-| `BorderBrush` | `LinearGradientBrush` (vertical rim) | Top-lit glass rim |
-| `BorderBrush2` | `WindhawkBlur` (alt) | Soft alternate border (Start/NC) |
-| `OverlayColor` | `AcrylicBrush` | Active/pointer-over fill |
-| `OverlayColorAlt`/`OverlayColor2` | `AcrylicBrush` | Inactive/multi-window/alt hover |
-| `AccentColor` | `AcrylicBrush` (system accent) | Accent highlights |
-| `ElementBackground` | `SolidColorBrush` (low opacity) | Layered inner cards |
-| `ClockBG` | `SolidColorBrush` (accent, solid) | Lock screen clock/date (Start) |
-| `BorderThickness` | thickness | Rim thickness |
-| `CornerRadius*`/`PanelRadius`/`CardRadius`/`ChipRadius`/`SearchBoxRadius` | radii | Harmonized scale |
-| `BaseHeight`/`BaseWidth` | size | Taskbar button footprint |
-| `thumbnailImageSize` | size | NC thumbnail |
+| Constant | Type | File(s) | Purpose |
+|---|---|---|---|
+| `Translucent` | `WindhawkBlur` | All | Light blur accent |
+| `Glass` | `WindhawkBlur` | All | Ultra-light glass |
+| `Frosted` | `WindhawkBlur` | All | Base panel material |
+| `Acrylic` | `WindhawkBlur` | All | Strong blur |
+| `Background` | alias `$Frosted` | All | Canonical background |
+| `BorderBrush` | `LinearGradientBrush` (vertical rim) | All | Top-lit glass rim |
+| `BorderThickness` | thickness (`0.3,1,0.3,1`) | All | Rim thickness |
+| `BorderBrush2` | `WindhawkBlur` (alt) | Start, NC | Soft alternate border |
+| `OverlayColor` | `AcrylicBrush` | Taskbar, NC | Active/pointer-over fill |
+| `OverlayColor2` | `AcrylicBrush` (lower luminosity) | Taskbar, NC | Inactive/multi-window/alt hover |
+| `AccentColor` | `AcrylicBrush` (system accent) | Taskbar, NC | Accent highlights |
+| `ActiveColor` | `AcrylicBrush` (opaque) | Taskbar | Active pill/indicator fill |
+| `ElementBackground` | `SolidColorBrush` (low opacity) | NC | Layered inner cards |
+| `ClockBG` | `SolidColorBrush` (accent, solid) | Start | Lock screen clock/date |
+| `CornerRadius` / `SearchBoxRadius` / `ElementCornerRadius` / `FlyoutCornerRadius` / `HoverCornerRadius` | radii | Start | Harmonized radii scale |
+| `R1` / `R2` | radii | Taskbar | Small/large taskbar radii |
+| `PanelRadius` / `CardRadius` / `ChipRadius` | radii | NC | Harmonized radii scale |
+| `Height` / `Width` | size (`42` / `42`) | Taskbar | Taskbar button footprint |
+| `thumbnailImageSize` | size (`70`) | NC | Thumbnail sizing |
 
 ## Installation & Usage
 
@@ -198,7 +212,7 @@ All three active files define the same core constants (with small additive token
    - Start Menu: `windows-11-start-menu-styler`
    - Notification Center: `windows-11-notification-center-styler`
    - *(File Explorer: `windows-11-file-explorer-styler` is approved but deferred — no suite config exists yet.)*
-3. **Apply the YAML**: In each mod's settings, import/copy the corresponding YAML from `src/`. Each YAML is self-contained with `styleConstants` and `controlStyles`.
+3. **Apply the YAML**: In each mod's settings, import/copy the corresponding YAML from this directory (`projects/command-center/`). Each YAML is self-contained with `styleConstants` and `controlStyles`.
 4. **Theme awareness**: Styles read Windows theme resources and should adapt to light/dark automatically.
 
 > **Process targets:** Taskbar → `explorer.exe`. Start Menu → `StartMenuExperienceHost.exe`. Notification Center → `ShellExperienceHost.exe`/`ShellHost.exe`. (File Explorer would target `explorer.exe` if resumed.)

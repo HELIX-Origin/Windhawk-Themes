@@ -151,6 +151,10 @@ controlStyles:
   - target: Border#AppBorder
     styles:
       - Visibility=1
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$CornerRadius
   - target: ToolTip > ContentPresenter#LayoutRoot
     styles:
       - Background:=$Background
@@ -160,15 +164,6 @@ controlStyles:
   - target: Border#AccentAppBorder
     styles:
       - Visibility=1
-  - target: Border#LayerBorder
-    styles:
-      - Visibility=1
-  - target: Border#AppBorder
-    styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$CornerRadius
   - target: Grid#MainMenu > Border#AcrylicBorder
     styles:
       - Visibility=1
@@ -242,9 +237,6 @@ controlStyles:
   - target: Grid#AllListHeading
     styles:
       - Visibility=1
-  - target: Grid#AllListHeading > TextBlock#AllListHeadingText
-    styles:
-      - Visibility=1
   - target: StartMenu.CategoryControl > Grid#RootGrid > Border
     styles:
       - Background:=$Background
@@ -310,9 +302,6 @@ controlStyles:
       - Width=300
       - Padding=0,15
       - Margin=-25,0,25,0
-  - target: TextBlock#PinnedListHeaderText
-    styles:
-      - Visibility=1
   - target: StartMenu.StartMenuCompanion#RightCompanion
     styles:
       - Height=700
@@ -354,10 +343,6 @@ controlStyles:
   - target: ScrollViewer#MenuFlyoutPresenterScrollViewer > Border > Grid > ScrollContentPresenter > ItemsPresenter > StackPanel
     styles:
       - ChildrenTransitions:=<TransitionCollection><EntranceThemeTransition IsStaggeringEnabled="False" FromHorizontalOffset="-25" FromVerticalOffset="0" /></TransitionCollection>
-  - target: Border@CommonStates > Grid#DroppedFlickerWorkaroundWrapper > ContentPresenter > Grid > Grid#LogoContainer > Image
-    styles:
-      - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />
-      - RenderTransformOrigin=0.5,0.5
   - target: Grid#ContentBorder@CommonStates > ContentPresenter > Grid > Grid#LogoContainer > Grid
     styles:
       - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />

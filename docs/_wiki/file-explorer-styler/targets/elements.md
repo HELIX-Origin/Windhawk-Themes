@@ -45,8 +45,8 @@ Controls managing open folder tabs, tab active/hover states, and new tab buttons
 | `TabViewItem` | `TabViewItem` | Win11 22H2 – 24H2 | Individual tab control. |
 | `TabViewItem > Grid#LayoutRoot@CommonStates` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Tab layout root with interactive visual states (`Normal`, `PointerOver`, `Selected`, `Pressed`). |
 | `TabViewItem > Grid#LayoutRoot > Canvas > Path#SelectedBackgroundPath` | `Windows.UI.Xaml.Shapes.Path` | Win11 22H2 – 24H2 | Active selected tab shape background fill. |
-| `Grid#TabContainerGrid > Border > Button#AddButton` | `Button` | Win11 22H2 – 24H2 | New tab "+" button: `CornerRadius=4`, `Background:=Transparent`. |
-| `Button#CloseButton` | `Button` | Win11 22H2 – 24H2 | Individual tab close ("X") button: `CornerRadius=4`. |
+| `Grid#TabContainerGrid > Border > Button#AddButton` | `Button` | Win11 22H2 – 24H2 | New tab "+" button. Stylable: `CornerRadius`, `Background`; set `Background:=Transparent` to clear the fill. |
+| `Button#CloseButton` | `Button` | Win11 22H2 – 24H2 | Individual tab close ("X") button. Stylable: `CornerRadius`. |
 
 ---
 
@@ -57,10 +57,10 @@ Controls managing back/forward/up arrows and the breadcrumb address bar.
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
 | `FileExplorerExtensions.NavigationBarControl#NavigationBarControl > Grid#NavigationBarControlGrid` | `Grid` | Win11 22H2 – 24H2 | History arrows and address bar row. |
-| `AppBarButton#backButton` | `AppBarButton` | Win11 22H2 – 24H2 | Back navigation arrow button: `CornerRadius=4`. |
-| `AppBarButton#forwardButton` | `AppBarButton` | Win11 22H2 – 24H2 | Forward navigation arrow button: `CornerRadius=4`. |
-| `AppBarButton#upButton` | `AppBarButton` | Win11 22H2 – 24H2 | Up to parent folder arrow button: `CornerRadius=4`. |
-| `Grid#FileExplorerAddressBarGrid` | `Grid` | Win11 22H2 – 24H2 | Address bar outer pill container: `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=6`. |
+| `AppBarButton#backButton` | `AppBarButton` | Win11 22H2 – 24H2 | Back navigation arrow button. Stylable: `CornerRadius`. |
+| `AppBarButton#forwardButton` | `AppBarButton` | Win11 22H2 – 24H2 | Forward navigation arrow button. Stylable: `CornerRadius`. |
+| `AppBarButton#upButton` | `AppBarButton` | Win11 22H2 – 24H2 | Up to parent folder arrow button. Stylable: `CornerRadius`. |
+| `Grid#FileExplorerAddressBarGrid` | `Grid` | Win11 22H2 – 24H2 | Address bar outer pill container. Stylable: `Background`, `BorderBrush`, `CornerRadius`. |
 | `FileExplorerExtensions.AddressBarControl` | `AddressBarControl` | Win11 22H2 – 24H2 | Breadcrumb trail navigation control. |
 | `AutoSuggestBox#PART_AutoSuggestBox > Grid#LayoutRoot > TextBox#TextBox` | `TextBox` | Win11 22H2 – 24H2 | Editable address text field shown when clicked. |
 
@@ -73,7 +73,7 @@ The search box embedded in the upper-right corner of File Explorer.
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
 | `AutoSuggestBox#FileExplorerSearchBox` | `AutoSuggestBox` | Win11 22H2 – 24H2 | File Explorer search bar container. |
-| `AutoSuggestBox#FileExplorerSearchBox > Grid#LayoutRoot > TextBox#TextBox` | `TextBox` | Win11 22H2 – 24H2 | Search input text box: `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=6`. |
+| `AutoSuggestBox#FileExplorerSearchBox > Grid#LayoutRoot > TextBox#TextBox` | `TextBox` | Win11 22H2 – 24H2 | Search input text box. Stylable: `Background`, `BorderBrush`, `CornerRadius`. |
 | `TextBlock#PlaceholderText` | `TextBlock` | Win11 22H2 – 24H2 | "Search <FolderName>" placeholder hint string. |
 
 ---
@@ -100,8 +100,8 @@ Panes, metadata sidebars, and popup context flyouts.
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `Grid#DetailsViewControlRootGrid` | `Grid` | Win11 22H2 – 24H2 | Right-side details and metadata pane. Sized with custom glass border: `Background:=$Background`, `BorderBrush:=$BorderBrush`. |
+| `Grid#DetailsViewControlRootGrid` | `Grid` | Win11 22H2 – 24H2 | Right-side details and metadata pane. Stylable: `Background`, `BorderBrush`. |
 | `Grid#HomeViewRootGrid` | `Grid` | Win11 22H2 – 24H2 | File Explorer Home landing page root grid. |
 | `FileExplorerExtensions.GalleryViewControl#GalleryViewControl` | `GalleryViewControl` | Win11 23H2 – 24H2 | Windows Photos/Gallery view container. |
-| `MenuFlyoutPresenter > Border` | `Border` | Win11 22H2 – 24H2 | Modern context menu popup border card: `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=6`. |
-| `ToolTip > ContentPresenter#LayoutRoot` | `ContentPresenter` | Win11 22H2 – 24H2 | Hover tooltip background pill: `Background:=$Background`, `CornerRadius=4`. |
+| `MenuFlyoutPresenter > Border` | `Border` | Win11 22H2 – 24H2 | Modern context menu popup border card. Stylable: `Background`, `BorderBrush`, `CornerRadius`. |
+| `ToolTip > ContentPresenter#LayoutRoot` | `ContentPresenter` | Win11 22H2 – 24H2 | Hover tooltip background pill. Stylable: `Background`, `CornerRadius`. |

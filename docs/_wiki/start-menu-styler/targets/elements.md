@@ -9,6 +9,9 @@ title: Start Menu Element Targets
 
 Complete technical reference and living catalog of verified XAML visual tree element names, types, control hierarchies, and visual state behaviors in `StartMenuExperienceHost.exe` (Windows 11 Start Menu).
 
+> [!NOTE]
+> The styling notes below name the XAML **properties** you can set on each target. They intentionally prescribe no theme values — pick your own fills, radii, and spacing.
+
 ---
 
 ## Architecture & Visual Tree Topology
@@ -44,15 +47,15 @@ The outermost visual tree controls manage window bounds, shell drop-shadow gener
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `Border#DropShadowDismissTarget` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Root drop-shadow and dismiss host. Setting `Shadow:=`, `BorderThickness=0.3,1,0.3,1`, `Background:=$Background`, and `CornerRadius=$ElementCornerRadius` applies unified glass styling and collapses the native dark halo. |
-| `Border#StartDropShadow`, `Border#RightCompanionDropShadow`, `Border#RootGridDropShadow`, `Border#dropshadow` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Native system drop-shadow borders. Typically set to `Visibility=Collapsed` in custom themes to eliminate opaque black silhouettes behind transparent glass. |
-| `Border#MainMenuHighContrastBorder`, `Border#RightCompanionHighContrastBorder` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | High-contrast accessibility boundary borders. Collapsed (`Visibility=Collapsed`) for pure modern aesthetic. |
-| `Border#LayerBorder`, `Border#AccentLayerBorder`, `Border#AccentAppBorder` | `Windows.UI.Xaml.Controls.Border` | Win11 22H2 – 24H2 | Internal accent highlighting layers. Collapsed (`Visibility=Collapsed`) to eliminate unwanted solid color bars. |
-| `Border#AcrylicBorder`, `Grid#MainMenu > Border#AcrylicBorder`, `Grid#CompanionRoot > Border#AcrylicBorder` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Default system acrylic background plate. When using `WindhawkBlur` on `DropShadowDismissTarget`, set this element to `Background:=Transparent`, `BorderBrush:=Transparent`, and `BorderThickness=0` to prevent opaque double-acrylic stacking. |
-| `Border#AcrylicOverlay` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Two-tone navigation split overlay card that covers the bottom third of the Start Menu. Set to `Visibility=Collapsed` or `Background:=Transparent` for a seamless single-pane glass surface. |
-| `Grid#FrameRoot` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Top layout container enforcing maximum flyout dimensions. Property `MaxHeight=790` (or similar) ensures vertical bounds align cleanly on small displays. |
-| `Grid#MainMenu` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Main content column container. `MaxWidth=470` constrains the primary Start area when companion cards (Phone Link) expand to the right. |
-| `Grid#MainContent` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Houses search, pinned grid, and recommendations. Standard layout assignment: `Grid.Row=0`, `MinHeight=Auto`. |
+| `Border#DropShadowDismissTarget` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Root drop-shadow and dismiss host. Collapsing it (`Visibility=Collapsed`) removes the native dark halo; the panel that carries the visible glass surface is `Grid#Root > Border` (stylable: `Background`, `BorderBrush`, `BorderThickness`, `CornerRadius`). |
+| `Border#StartDropShadow`, `Border#RightCompanionDropShadow`, `Border#RootGridDropShadow`, `Border#dropshadow` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Native system drop-shadow borders. Collapse (`Visibility=Collapsed`) to eliminate opaque black silhouettes behind transparent glass. |
+| `Border#MainMenuHighContrastBorder`, `Border#RightCompanionHighContrastBorder` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | High-contrast accessibility boundary borders. Normally left untouched. |
+| `Border#LayerBorder`, `Border#AccentLayerBorder`, `Border#AccentAppBorder` | `Windows.UI.Xaml.Controls.Border` | Win11 22H2 – 24H2 | Internal accent highlighting layers. Collapse (`Visibility=Collapsed`) to eliminate unwanted solid color bars. |
+| `Border#AcrylicBorder`, `Grid#MainMenu > Border#AcrylicBorder`, `Grid#CompanionRoot > Border#AcrylicBorder` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Default system acrylic background plate. The main-menu acrylic (`Grid#MainMenu > Border#AcrylicBorder`) and the docked companion variant (`StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot > Border#AcrylicBorder`) are collapsed (`Visibility=Collapsed`); the companion-pane acrylic (`Grid#CompanionRoot > Border#AcrylicBorder`) is the surface that carries the visible fill (stylable: `Background`, `CornerRadius`). |
+| `Border#AcrylicOverlay` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 – 24H2 | Two-tone navigation split overlay card that covers the bottom third of the Start Menu. Set `Visibility=Collapsed` or `Background:=Transparent` for a seamless single-pane glass surface. |
+| `Grid#FrameRoot` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Top layout container enforcing maximum flyout dimensions. Constrain with `MaxHeight` so vertical bounds align cleanly on small displays. |
+| `Grid#MainMenu` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Main content column container. Set `Width` / `Height` to size the primary Start area while companion cards (Phone Link) expand to the right. |
+| `Grid#MainContent` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Houses search, pinned grid, and recommendations. Standard layout assignment: `Grid.Row`, `MinHeight`. |
 | `Windows.UI.Xaml.Controls.Primitives.ScrollBar` | `ScrollBar` | Win11 21H2 – 24H2 | Root scrollbar elements. Collapsing (`Visibility=Collapsed`) hides intrusive vertical scrollbars during flyout animations. |
 
 ---
@@ -63,11 +66,11 @@ The search box at the top of the Start Menu acts as an interactive button that t
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `StartMenu.SearchBoxToggleButton` | Custom Toggle Control | Win11 22H2 – 24H2 | Top search entry pill. Standard geometry: `Width=285`, `Height=34`, `HorizontalAlignment=Left`, `Margin=35,0,0,0`, `Background:=Transparent`, `BorderThickness=0`. |
-| `StartMenu.SearchBoxToggleButton > Grid@CommonStates > Border#BorderElement` | `Windows.UI.Xaml.Controls.Border` | Win11 22H2 – 24H2 | Search pill background plate. Accepts `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=$SearchBoxRadius`, and interactive `@PointerOver` state overrides. |
-| `StartMenu.SearchBoxToggleButton > Grid > Grid#UnderlineContainer` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Native bottom accent focus underline. Set to `Visibility=Collapsed` for a clean pill aesthetic. |
-| `StartMenu.SearchBoxToggleButton > Grid > FontIcon#SearchGlyph` | `Windows.UI.Xaml.Controls.FontIcon` | Win11 22H2 – 24H2 | Magnifying glass icon. Styled via `FontSize=13`, `Margin=12,0,8,0`, `VerticalAlignment=Center`. |
-| `StartMenu.SearchBoxToggleButton > Grid > ContentPresenter > TextBlock#PlaceholderText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 22H2 – 24H2 | "Type here to search" placeholder label. Styled with `FontSize=11`, `VerticalAlignment=Center`. |
+| `StartMenu.SearchBoxToggleButton` | Custom Toggle Control | Win11 22H2 – 24H2 | Top search entry pill. Stylable: `Width`, `Height`, `HorizontalAlignment`, `Margin`, `Background`, `BorderThickness`. |
+| `StartMenu.SearchBoxToggleButton > Grid@CommonStates > Border#BorderElement` | `Windows.UI.Xaml.Controls.Border` | Win11 22H2 – 24H2 | Search pill background plate. Stylable: `Background`, `BorderBrush`, `CornerRadius`, plus interactive `@PointerOver` state overrides. |
+| `StartMenu.SearchBoxToggleButton > Grid > Grid#UnderlineContainer` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Native bottom accent focus underline. Set `Visibility=Collapsed` for a clean pill aesthetic. |
+| `StartMenu.SearchBoxToggleButton > Grid > FontIcon#SearchGlyph` | `Windows.UI.Xaml.Controls.FontIcon` | Win11 22H2 – 24H2 | Magnifying glass icon. Stylable: `FontSize`, `Margin`, `VerticalAlignment`. |
+| `StartMenu.SearchBoxToggleButton > Grid > ContentPresenter > TextBlock#PlaceholderText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 22H2 – 24H2 | "Type here to search" placeholder label. Stylable: `FontSize`, `VerticalAlignment`. |
 | `AutoSuggestBox#SearchBox` | `Windows.UI.Xaml.Controls.AutoSuggestBox` | Win11 21H2 | Legacy search input element on 21H2 builds. |
 | `Border#SearchBoxBorder` | `Windows.UI.Xaml.Controls.Border` | Win11 21H2 | Legacy background plate on 21H2. |
 | `TextBox#SearchTextBox` | `Windows.UI.Xaml.Controls.TextBox` | Win11 21H2 | Legacy input text box. |
@@ -80,13 +83,13 @@ Controls rendering pinned app shortcuts, grid dimensions, and item hover cards.
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `StartMenu.PinnedList` | Custom Items Control | Win11 22H2 – 24H2 | Container for pinned apps. Supports dynamic height binding using Windhawk state capture: `ActualHeight=>pinnedListHeight`, `Margin=-23,20,-7,150`, `MaxWidth=410`, `MinHeight=115`. |
-| `StartMenu.PinnedList > Grid#Root > GridView#PinnedList > Border` | `Windows.UI.Xaml.Controls.Border` | Win11 22H2 – 24H2 | Background card wrapping the pinned icons grid. Accepts `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=$ElementCornerRadius`, `Padding=22,10,22,10`. |
-| `GridView#PinnedList` | `Windows.UI.Xaml.Controls.GridView` | Win11 21H2 – 24H2 | Primary grid view hosting pinned application icons. Center-aligned via `HorizontalAlignment=Center`. |
+| `StartMenu.PinnedList` | Custom Items Control | Win11 22H2 – 24H2 | Container for pinned apps. Supports dynamic height binding via Windhawk state capture (`ActualHeight=>pinnedListHeight`), plus `Margin`, `MaxWidth`, `MinHeight`. |
+| `StartMenu.PinnedList > Grid#Root > GridView#PinnedList > Border` | `Windows.UI.Xaml.Controls.Border` | Win11 22H2 – 24H2 | Background card wrapping the pinned icons grid. Stylable: `Background`, `BorderBrush`, `CornerRadius`, `Padding`. |
+| `GridView#PinnedList` | `Windows.UI.Xaml.Controls.GridView` | Win11 21H2 – 24H2 | Primary grid view hosting pinned application icons. Center-aligned via `HorizontalAlignment`. |
 | `GridViewItem` | `Windows.UI.Xaml.Controls.GridViewItem` | Win11 21H2 – 24H2 | Item wrapper for individual pinned apps. |
-| `TextBlock#PinnedListHeaderText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | "Pinned" section header text. Set to `Text=""` to eliminate header clutter. |
-| `StartMenu.CategoryControl` | Custom Control | Win11 24H2 | Category grouping control on new 24H2 grid layouts. Styled via `Margin=15,0,-15,0`. |
-| `StartMenu.CategoryControl > Grid#RootGrid > Border` | `Windows.UI.Xaml.Controls.Border` | Win11 24H2 | Outer card border for category groups. Styled with `Background:=$Background`, `CornerRadius=$ElementCornerRadius`. |
+| `TextBlock#PinnedListHeaderText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | "Pinned" section header text. Set `Text=""` to eliminate header clutter. |
+| `StartMenu.CategoryControl` | Custom Control | Win11 24H2 | Category grouping control on new 24H2 grid layouts. Stylable: `Margin`. |
+| `StartMenu.CategoryControl > Grid#RootGrid > Border` | `Windows.UI.Xaml.Controls.Border` | Win11 24H2 | Outer card border for category groups. Stylable: `Background`, `CornerRadius`. |
 
 ---
 
@@ -97,12 +100,12 @@ Controls managing recent documents, recommended apps, and expander toggles.
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
 | `Windows.UI.Xaml.Controls.GridView#RecommendedList` | `GridView` | Win11 21H2 – 24H2 | Recommended items list. In minimal layouts, collapse with `Visibility=Collapsed`. |
-| `Grid#TopLevelSuggestionsRoot` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Container hosting suggestion items. Layout: `Grid.Row=1`. |
+| `Grid#TopLevelSuggestionsRoot` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Container hosting suggestion items. Layout: `Grid.Row`. |
 | `Grid#ShowMoreSuggestions` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Expander container. Supports reactive visibility binding: `Visibility={% raw %}{{showMoreSuggestionsVisible}}{% endraw %}`. |
-| `Button#ShowMoreSuggestionsButton` | `Windows.UI.Xaml.Controls.Button` | Win11 22H2 – 24H2 | "More" chevron button. Styled with `Margin=0,-77,335,0`, `Height=32`, and custom corner rounding. |
-| `Button#ShowMoreSuggestionsButton > Windows.UI.Xaml.Controls.Grid@CommonStates` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Interactive state border: `BorderBrush:=$BorderBrush`, `BorderThickness=2,2,0,2`, `CornerRadius=15,0,0,15`. |
-| `Button#HideMoreSuggestionsButton` | `Windows.UI.Xaml.Controls.Button` | Win11 22H2 – 24H2 | Back chevron button when recommendations are expanded. `Margin=33,30,0,0`, `Height=32`, `Width=32`, `CornerRadius=6`. |
-| `Microsoft.UI.Xaml.Controls.DropDownButton` | WinUI DropDownButton | Win11 23H2 – 24H2 | Category drop-down button in recommendations header. Styled with `RenderTransform:=<TranslateTransform X="-235" Y="{% raw %}{{-224 - pinnedListHeight}}{% endraw %}" />`. |
+| `Button#ShowMoreSuggestionsButton` | `Windows.UI.Xaml.Controls.Button` | Win11 22H2 – 24H2 | "More" chevron button. Stylable: `Margin`, `Height`, `CornerRadius`. |
+| `Button#ShowMoreSuggestionsButton > Windows.UI.Xaml.Controls.Grid@CommonStates` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Interactive state border. Stylable: `BorderBrush`, `BorderThickness`, `CornerRadius`. |
+| `Button#HideMoreSuggestionsButton` | `Windows.UI.Xaml.Controls.Button` | Win11 22H2 – 24H2 | Back chevron button when recommendations are expanded. Stylable: `Margin`, `Height`, `Width`, `CornerRadius`. |
+| `Microsoft.UI.Xaml.Controls.DropDownButton` | WinUI DropDownButton | Win11 23H2 – 24H2 | Category drop-down button in recommendations header. Supports a `RenderTransform` with a `TranslateTransform` driven by captured dynamic state (e.g. `pinnedListHeight`). |
 
 ---
 
@@ -112,11 +115,11 @@ Controls rendering the full list of installed programs.
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `Windows.UI.Xaml.Controls.Grid#AllAppsRoot` | `Grid` | Win11 21H2 – 24H2 | Root container for the full installed applications list. `Margin=0`. |
-| `Grid#TopLevelHeader > Grid > Button[AutomationProperties.Name=Show all]` | `Button` | Win11 22H2 – 24H2 | "All apps" header pill button. Styled with `Width=85`, `Height=32`, `CornerRadius=0,15,15,0`, `Background@Normal:=$Background`. |
-| `Windows.UI.Xaml.Controls.GridView#AllAppsGrid > Border > ScrollViewer > Border > Grid > ScrollContentPresenter > ItemsPresenter > ItemsWrapGrid` | `ItemsWrapGrid` | Win11 21H2 – 24H2 | Inner wrap grid layout for installed apps. Positioned with `Margin=45,-180,45,0`. |
-| `TextBlock#AllListHeadingText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | "All apps" section header label. Styled with `Margin=63,-184,12,0`, or set `Text=""` to hide. |
-| `TextBlock#ZoomedOutHeading` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | Zoomed-out alphabet jump list heading. Collapsed via `Visibility=Collapsed`. |
+| `Windows.UI.Xaml.Controls.Grid#AllAppsRoot` | `Grid` | Win11 21H2 – 24H2 | Root container for the full installed applications list. |
+| `Grid#TopLevelHeader > Grid > Button[AutomationProperties.Name=Show all]` | `Button` | Win11 22H2 – 24H2 | "All apps" header pill button. Stylable: `Width`, `Height`, `CornerRadius`, `Background@Normal`. |
+| `Windows.UI.Xaml.Controls.GridView#AllAppsGrid > Border > ScrollViewer > Border > Grid > ScrollContentPresenter > ItemsPresenter > ItemsWrapGrid` | `ItemsWrapGrid` | Win11 21H2 – 24H2 | Inner wrap grid layout for installed apps. Stylable: `Margin`. |
+| `TextBlock#AllListHeadingText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | "All apps" section header label. Stylable: `Margin`; set `Text=""` to hide. |
+| `TextBlock#ZoomedOutHeading` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | Zoomed-out alphabet jump list heading. Collapse via `Visibility=Collapsed`. |
 
 ---
 
@@ -126,18 +129,18 @@ The bottom navigation strip hosting the user avatar, folder shortcuts, and the p
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `Grid#NavPanePlaceholder` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Bottom navigation row placeholder. Constrained via `MaxHeight=60`. |
-| `StartDocked.NavigationPaneView > Grid#RootPanel` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Navigation pane layout root. Set to `Background:=Transparent`, `BorderBrush:=Transparent` to eliminate the dark bottom bar. |
-| `StartDocked.UserTileView` | Custom Control | Win11 21H2 – 24H2 | User account avatar and username host. Constrained via `Height=32`. |
-| `StartDocked.NavigationPaneButton#UserTileButton > Grid > Border#BackgroundBorder` | `Border` | Win11 21H2 – 24H2 | Avatar card pill background: `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=$ElementCornerRadius`. |
-| `Grid#UserTileIcon` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Circular user avatar container. Sized via `Height=24`, `Width=24`. |
-| `TextBlock#UserTileNameText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | Display name label. Styled via `FontSize=12`. |
-| `StartDocked.AppListView#NavigationPanePlacesListView` | `AppListView` | Win11 21H2 – 24H2 | Pinned folder shortcut icons (Settings, File Explorer, Downloads, etc.). `Height=32`, `Margin=0,0,8,0`. |
-| `StartDocked.AppListView#NavigationPanePlacesListView > Border` | `Border` | Win11 21H2 – 24H2 | Background card wrapping folder shortcuts. `CornerRadius=6`, `Background:=$Background`. |
-| `StartDocked.PowerOptionsView` | Custom Control | Win11 21H2 – 24H2 | Power menu button container. `Height=32`. |
-| `StartDocked.NavigationPaneButton#PowerButton` | `NavigationPaneButton` | Win11 21H2 – 24H2 | Power options trigger button. `Height=32`, `Width=32`, `CornerRadius=$ElementCornerRadius`. |
-| `StartDocked.NavigationPaneButton#PowerButton > Grid@CommonStates > Border#BackgroundBorder` | `Border` | Win11 21H2 – 24H2 | Power button interactive background card: `Background:=$Background`, `BorderBrush:=$BorderBrush`, `BorderThickness=$BorderThickness`. |
-| `StartDocked.NavigationPaneButton#PowerButton > Grid > ContentPresenter > Grid > FontIcon` | `FontIcon` | Win11 21H2 – 24H2 | Power icon glyph. Sized via `FontSize=14`. |
+| `Grid#NavPanePlaceholder` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Bottom navigation row placeholder. Constrain with `MaxHeight`. |
+| `StartDocked.NavigationPaneView > Grid#RootPanel` | `Windows.UI.Xaml.Controls.Grid` | Win11 22H2 – 24H2 | Navigation pane layout root. Set `Background:=Transparent` and `BorderBrush:=Transparent` to eliminate the dark bottom bar. |
+| `StartDocked.UserTileView` | Custom Control | Win11 21H2 – 24H2 | User account avatar and username host. Constrain with `Height`. |
+| `StartDocked.NavigationPaneButton#UserTileButton > Grid > Border#BackgroundBorder` | `Border` | Win11 21H2 – 24H2 | Avatar card pill background. Stylable: `Background`, `BorderBrush`, `CornerRadius`. |
+| `Grid#UserTileIcon` | `Windows.UI.Xaml.Controls.Grid` | Win11 21H2 – 24H2 | Circular user avatar container. Sized via `Height`, `Width`. |
+| `TextBlock#UserTileNameText` | `Windows.UI.Xaml.Controls.TextBlock` | Win11 21H2 – 24H2 | Display name label. Stylable: `FontSize`. |
+| `StartDocked.AppListView#NavigationPanePlacesListView` | `AppListView` | Win11 21H2 – 24H2 | Pinned folder shortcut icons (Settings, File Explorer, Downloads, etc.). Stylable: `Height`, `Margin`. |
+| `StartDocked.AppListView#NavigationPanePlacesListView > Border` | `Border` | Win11 21H2 – 24H2 | Background card wrapping folder shortcuts. Stylable: `CornerRadius`, `Background`. |
+| `StartDocked.PowerOptionsView` | Custom Control | Win11 21H2 – 24H2 | Power menu button container. Stylable: `Height`. |
+| `StartDocked.NavigationPaneButton#PowerButton` | `NavigationPaneButton` | Win11 21H2 – 24H2 | Power options trigger button. Stylable: `Height`, `Width`, `CornerRadius`. |
+| `StartDocked.NavigationPaneButton#PowerButton > Grid@CommonStates > Border#BackgroundBorder` | `Border` | Win11 21H2 – 24H2 | Power button interactive background card. Stylable: `Background`, `BorderBrush`, `BorderThickness`. |
+| `StartDocked.NavigationPaneButton#PowerButton > Grid > ContentPresenter > Grid > FontIcon` | `FontIcon` | Win11 21H2 – 24H2 | Power icon glyph. Stylable: `FontSize`. |
 
 ---
 
@@ -147,13 +150,13 @@ Windows 11 builds 23H2+ and 24H2 introduce a side companion panel docked to the 
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot`, `StartMenu.StartMenuCompanion#RightCompanion > Grid#CompanionRoot` | `Grid` | Win11 23H2 – 24H2 | Companion root card docked to Start. Styled with asymmetric corner rounding: `CornerRadius=0,35,35,0`, `Margin=-20,0,20,0`, `Padding=0`. |
-| `ToggleButton#ShowHideCompanion` | `ToggleButton` | Win11 23H2 – 24H2 | Toggle button in header to collapse or expand the companion card. `Height=34`, `Width=42`, `CornerRadius=$ElementCornerRadius`. |
-| `ToggleButton#ShowHideCompanion > Border` | `Border` | Win11 23H2 – 24H2 | Interactive state background plate for the companion toggle: `Background:=$Background`, `Background@PointerOver:=$Background`, `Background@Pressed:=$Background`. |
-| `ContentPresenter#PrimaryCardContainer` | `ContentPresenter` | Win11 23H2 – 24H2 | Container hosting Adaptive Cards for phone telemetry and messages. `Margin=4,12,8,12`. |
-| `AdaptiveCards.Rendering.Uwp.WholeItemsPanel > Grid > Border > AdaptiveCards.Rendering.Uwp.WholeItemsPanel > Grid > ListView > Border` | `Border` | Win11 23H2 – 24H2 | Individual phone item cards. Styled with `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=$ElementCornerRadius`. |
-| `Grid#ActionsBar` | `Grid` | Win11 23H2 – 24H2 | Bottom quick actions bar within the companion panel. `Height=38`, `VerticalAlignment=Bottom`, `Margin=14,0,14,12`, `Background:=$Background`, `CornerRadius=$ElementCornerRadius`. |
-| `Grid#ActionsBar > Button` | `Button` | Win11 23H2 – 24H2 | Action buttons inside companion bar. `Height=32`, `Width=40`, `Background:=Transparent`, `BorderThickness=0`. |
+| `StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot`, `StartMenu.StartMenuCompanion#RightCompanion > Grid#CompanionRoot` | `Grid` | Win11 23H2 – 24H2 | Companion root card docked to Start. Supports asymmetric corner rounding (per-side `CornerRadius`) and independent `Margin` / `Padding`. |
+| `ToggleButton#ShowHideCompanion` | `ToggleButton` | Win11 23H2 – 24H2 | Toggle button in header to collapse or expand the companion card. Stylable: `Height`, `Width`, `CornerRadius`. |
+| `ToggleButton#ShowHideCompanion > Border` | `Border` | Win11 23H2 – 24H2 | Interactive state background plate for the companion toggle. Stylable: `Background`, plus `@PointerOver` and `@Pressed` state overrides. |
+| `ContentPresenter#PrimaryCardContainer` | `ContentPresenter` | Win11 23H2 – 24H2 | Container hosting Adaptive Cards for phone telemetry and messages. Stylable: `Margin`. |
+| `AdaptiveCards.Rendering.Uwp.WholeItemsPanel > Grid > Border > AdaptiveCards.Rendering.Uwp.WholeItemsPanel > Grid > ListView > Border` | `Border` | Win11 23H2 – 24H2 | Individual phone item cards. Stylable: `Background`, `BorderBrush`, `CornerRadius`. |
+| `Grid#ActionsBar` | `Grid` | Win11 23H2 – 24H2 | Bottom quick actions bar within the companion panel. Stylable: `Height`, `VerticalAlignment`, `Margin`, `Background`, `CornerRadius`. |
+| `Grid#ActionsBar > Button` | `Button` | Win11 23H2 – 24H2 | Action buttons inside companion bar. Stylable: `Height`, `Width`, `Background`, `BorderThickness`. |
 
 ---
 
@@ -163,10 +166,10 @@ Popups and flyout menus triggered within the Start Menu experience.
 
 | Element Selector | Class Type | Verified Builds | Behavior & Styling Notes |
 |---|---|---|---|
-| `StartMenu.FolderModal#StartFolderModal > Grid#Root` | `Grid` | Win11 22H2 – 24H2 | Expanded app folder popup modal. Sized via `MaxHeight=420`, `MaxWidth=420`, `Height=Auto`, `Width=Auto`. |
-| `StartMenu.UniversalTileContainer#UniversalTileContainer > Grid#GridViewContainer` | `Grid` | Win11 22H2 – 24H2 | Grid container inside folder modals. `Width=360`, `Height=Auto`. |
-| `FlyoutPresenter > Border#BackgroundElement`, `FlyoutPresenter > Border` | `Border` | Win11 21H2 – 24H2 | Context popup flyout background card. Sized with `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=$FlyoutCornerRadius`, `Padding=-1`. |
-| `MenuFlyoutPresenter > Border#BackgroundElement`, `MenuFlyoutPresenter > Border` | `Border` | Win11 21H2 – 24H2 | Context menu flyout container. Styled with `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=$FlyoutCornerRadius`. |
-| `MenuFlyoutItem`, `ToggleMenuFlyoutItem` | Menu Items | Win11 21H2 – 24H2 | Individual context menu item rows. Styled with `CornerRadius=$FlyoutCornerRadius`, `Margin=4,0,4,0`. |
-| `ToolTip > ContentPresenter#LayoutRoot` | `ContentPresenter` | Win11 21H2 – 24H2 | Tooltip popup pill. Styled with `Background:=$Background`, `BorderBrush:=$BorderBrush`, `CornerRadius=$ElementCornerRadius`. |
-| `Border#BackgroundBorder, Grid#LayoutRoot` | `Border`, `Grid` | Win11 21H2 – 24H2 | Fluid hover transitions: `BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />`. |
+| `StartMenu.FolderModal#StartFolderModal > Grid#Root` | `Grid` | Win11 22H2 – 24H2 | Expanded app folder popup modal. Sized via `MaxHeight`, `MaxWidth`, `Height`, `Width`. |
+| `StartMenu.UniversalTileContainer#UniversalTileContainer > Grid#GridViewContainer` | `Grid` | Win11 22H2 – 24H2 | Grid container inside folder modals. Stylable: `Width`, `Height`. |
+| `FlyoutPresenter > Border#BackgroundElement`, `FlyoutPresenter > Border` | `Border` | Win11 21H2 – 24H2 | Context popup flyout background card. Stylable: `Background`, `BorderBrush`, `CornerRadius`, `Padding`. |
+| `MenuFlyoutPresenter > Border#BackgroundElement`, `MenuFlyoutPresenter > Border` | `Border` | Win11 21H2 – 24H2 | Context menu flyout container. Stylable: `Background`, `BorderBrush`, `CornerRadius`. |
+| `MenuFlyoutItem`, `ToggleMenuFlyoutItem` | Menu Items | Win11 21H2 – 24H2 | Individual context menu item rows. Stylable: `CornerRadius`, `Margin`. |
+| `ToolTip > ContentPresenter#LayoutRoot` | `ContentPresenter` | Win11 21H2 – 24H2 | Tooltip popup pill. Stylable: `Background`, `BorderBrush`, `CornerRadius`. |
+| `Border#BackgroundBorder, Grid#LayoutRoot` | `Border`, `Grid` | Win11 21H2 – 24H2 | Fluid hover transitions: supports `BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />`. |

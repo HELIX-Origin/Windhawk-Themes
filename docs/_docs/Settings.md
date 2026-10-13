@@ -79,5 +79,5 @@ controlStyles:
 ## 4. Theming Approach
 
 1. **Collapsing Opaque Fills**: Replacing hard system backgrounds on `Page#RootPage` with transparent brushes allows `WindhawkBlur` to shine through.
-2. **Card Elevation**: Setting `$ElementBackground` and `$BorderBrush` on `SettingsCard` and `SettingsExpander` transforms the flat interface into a layered, floating glass workspace.
-3. **Harmonized Radii**: Navigation search box uses `$SearchRadius` (25px), cards use `$CardRadius` (10px), and buttons use `$ButtonRadius` (6px).
+2. **Card Elevation**: Setting the `Background` and `BorderBrush` on `SettingsCard` and `SettingsExpander` transforms the flat interface into a layered, floating glass workspace.
+3. **Harmonized Radii**: Search boxes, cards, and buttons can each take their own `CornerRadius`.

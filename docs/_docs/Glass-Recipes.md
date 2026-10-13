@@ -28,18 +28,18 @@ The base surface material for primary shell windows:
 
 ```yaml
 styleConstants:
-  - Background:=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8"/>
-  - BorderBrush:=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0"/><GradientStop Color="#50404040" Offset="0.5"/><GradientStop Color="#40808080" Offset="1.0"/></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
-  - CornerRadius=35
+  - MySurfaceFill:=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8"/>
+  - MyRimBrush:=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0"/><GradientStop Color="#40808080" Offset="1.0"/></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8            # illustrative — choose your own scale
 
 controlStyles:
   - target: Grid#RootPanel
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$CornerRadius
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 ```
 
 ---
@@ -51,12 +51,11 @@ A vertical linear gradient border simulates natural ambient light catching the p
 ```xml
 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
   <GradientStop Color="#60808080" Offset="0.0"/>
-  <GradientStop Color="#50404040" Offset="0.5"/>
   <GradientStop Color="#40808080" Offset="1.0"/>
 </LinearGradientBrush>
 ```
 
-Paired with asymmetric thickness (`0.3,1,0.3,1`), the top and bottom borders appear highlighted while the side edges remain subtle.
+Paired with asymmetric thickness (`0,1,0,1`), the top and bottom borders appear highlighted while the side edges remain subtle.
 
 ---
 
@@ -86,15 +85,16 @@ Layered elements (quick settings tiles, calendar cells, flyout pills) sit above 
 
 ```yaml
 styleConstants:
-  - ElementBackground:=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="0.4" FallbackColor="#202020"/>
-  - OverlayColor:=<SolidColorBrush Color="#20ffffff"/>
-  - OverlayColor2:=<SolidColorBrush Color="#40ffffff"/>
+  - MySurfaceFill:=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="0.4" FallbackColor="#202020"/>
+  - MyOverlay:=<SolidColorBrush Color="#20ffffff"/>
+  - MyOverlayAlt:=<SolidColorBrush Color="#40ffffff"/>
+  - MyRadius=8            # illustrative — choose your own scale
 
 controlStyles:
   - target: Border#CardRoot
     styles:
-      - Background:=$ElementBackground
-      - Background@PointerOver:=$OverlayColor2
-      - Background@Pressed:=$OverlayColor
-      - CornerRadius=10
+      - Background:=$MySurfaceFill
+      - Background@PointerOver:=$MyOverlayAlt
+      - Background@Pressed:=$MyOverlay
+      - CornerRadius=$MyRadius
 ```

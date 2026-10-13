@@ -41,14 +41,14 @@ Constants are declared as a list of `Name=Value` strings and referenced using `$
 
 ```yaml
 styleConstants:
-  - Background:=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8"/>
-  - BorderBrush:=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0"/><GradientStop Color="#50404040" Offset="0.5"/><GradientStop Color="#40808080" Offset="1.0"/></LinearGradientBrush>
-  - CornerRadius=10
-  - BorderThickness=0.3,1,0.3,1
+  - MySurfaceFill:=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8"/>
+  - MyRimBrush:=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0"/><GradientStop Color="#40808080" Offset="1.0"/></LinearGradientBrush>
+  - MyRadius=8            # illustrative — choose your own scale
+  - MyRimThickness=0,1,0,1
 ```
 
 ### Constant Rules:
-- **No Leading `$` in Declarations**: Correct: `- CornerRadius=10`. Wrong: `- $CornerRadius=10`.
+- **No Leading `$` in Declarations**: Correct: `- MyToken=Value`. Wrong: `- $MyToken=Value`.
 - **References**: Always use `$ConstantName` when consuming a constant in a style value.
 - **No Unused Tokens**: Every declared token should be utilized in `controlStyles` or explicitly reserved in the header.
 
@@ -58,9 +58,9 @@ styleConstants:
 
 | Operator | Usage | Example |
 |---|---|---|
-| `=` | Simple scalar / string property assignment | `CornerRadius=10`, `Visibility=Collapsed` |
+| `=` | Simple scalar / string property assignment | `CornerRadius=8`, `Visibility=Collapsed` |
 | `:=` | XAML snippet inflation | `Background:=<SolidColorBrush Color="#101010"/>` |
-| `@VisualState` | State-specific property override | `Background@PointerOver:=$OverlayColor` |
+| `@VisualState` | State-specific property override | `Background@PointerOver:=$MyFill` |
 | `:=` (empty) | Clears property to null / default | `Shadow:=`, `Background:=` |
 
 ---

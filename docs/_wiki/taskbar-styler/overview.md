@@ -42,36 +42,38 @@ For exhaustive technical reference documentation, explore the dedicated subcateg
 
 ## 3. High-Level Hierarchy & Key Control Anchors
 
-1. **Floating Dock Construction**:
-   * `Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid`: Applying `Margin=8,4,8,4` and `CornerRadius=$R2` detaches the taskbar from the display edges, transforming it into a floating dock.
-   * `Rectangle#BackgroundFill` and `Rectangle#BackgroundStroke`: The native solid color fill and top border stroke. Both must be collapsed (`Visibility=Collapsed` or `1`) to reveal the custom frosted blur foundation underneath.
+1. **Taskbar Glass Background**:
+   * `Taskbar.TaskbarBackground#HoverFlyoutBackgroundControl`: Applying the `Background`, `BorderBrush`, `BorderThickness`, and `CornerRadius` properties renders a frosted glass surface with rim lighting directly on the taskbar background. The taskbar remains flush with the display edges.
+   * `Rectangle#BackgroundFill` and `Rectangle#BackgroundStroke`: The native solid color fill and top border stroke. Both are collapsed (`Visibility=1`) to reveal the custom frosted blur foundation underneath.
 2. **App Button Visual State Matrix**:
    * Running apps are represented by `Taskbar.TaskListButtonPanel`. The `@CommonStates` visual state group can be targeted to deliver custom state lighting across `ActiveNormal`, `ActivePointerOver`, `ActivePressed`, `InactiveNormal`, `InactivePointerOver`, and `MultiWindow` variants.
 3. **Corner System Tray & Clock**:
-   * `StackPanel#SystemTrayFrameGrid`: Can be sized and centered vertically to align with a floating dock.
+   * `StackPanel#SystemTrayFrameGrid`: Can be sized (set its `Height`) and rendered transparent (`Background:=Transparent`, `BorderBrush:=Transparent`) with its native shadow removed (`Shadow:=`) to sit flush within the glass taskbar surface.
    * `Button#ShowDesktopButton`: The 1px edge strip can be collapsed or compressed to prevent accidental desktop reveals.
 
 ---
 
-## 4. Key Recipes: Applying Floating Dock Glass
+## 4. Key Recipes: Applying Taskbar Glass
+
+> [!NOTE]
+> Names and values below are placeholders — define your own tokens.
 
 ```yaml
 styleConstants:
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Background=$Frosted
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
-  - R2=20
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8            # illustrative — choose your own scale
 
 controlStyles:
-  # Floating taskbar dock background card
-  - target: Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid, Taskbar.TaskbarBackground > Grid
+  # Taskbar glass background surface
+  - target: Taskbar.TaskbarBackground#HoverFlyoutBackgroundControl
     styles:
-      - Margin=8,4,8,4
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$R2
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 
   # Collapse native solid color fill and top stroke
   - target: Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid > Rectangle#BackgroundFill

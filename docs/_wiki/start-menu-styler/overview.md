@@ -45,14 +45,14 @@ For in-depth reference documentation, consult the dedicated subcategories:
 Understanding the structural hierarchy of `StartMenuExperienceHost.exe` is essential for crafting stable themes:
 
 1. **Root Dismiss & Framing**:
-   * `Border#DropShadowDismissTarget`: The outermost window host. Setting `Shadow:=` collapses the system dark silhouette, while `Background:=$Background` and `CornerRadius=$ElementCornerRadius` establish the unified floating glass panel.
-   * `Border#AcrylicBorder`: The default system acrylic plate. Must be set to `Background:=Transparent` and `BorderThickness=0` when custom blur is applied to avoid opaque visual collisions.
+   * `Border#DropShadowDismissTarget`: The outermost window host. It is collapsed (`Visibility=1`) to remove the system dark silhouette; a glass panel is instead rendered on `Grid#Root > Border` by styling its `Background`, `BorderBrush`, `BorderThickness`, and `CornerRadius` properties.
+   * `Border#AcrylicBorder`: The default system acrylic plate. The main-menu acrylic (`Grid#MainMenu > Border#AcrylicBorder`) is collapsed (`Visibility=1`), while the companion-pane acrylic (`Grid#CompanionRoot > Border#AcrylicBorder`) is styled through its `Background` and `CornerRadius` properties.
 2. **Two-Tone Acrylic Splitting**:
    * Windows 11 features a split background where the lower section (`Border#AcrylicOverlay`) has a darker tint. For a seamless single-panel aesthetic, this overlay can be collapsed (`Visibility=Collapsed`).
 3. **Embedded Search Pill**:
-   * Handled by `StartMenu.SearchBoxToggleButton`. Can be styled as a floating glass pill (`$SearchBoxRadius`) with top-lit rim lighting and subtle hover illumination.
+   * Handled by `StartMenu.SearchBoxToggleButton`. Can be styled as a floating glass pill (set its `CornerRadius`) with rim lighting and subtle hover illumination.
 4. **Phone Link Companion Expansion**:
-   * `StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot`: Expanding cards docked to the right of the Start Menu. Asymmetric corner radii (`0,35,35,0`) allow it to join seamlessly with the main panel.
+   * `StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot`: Expanding cards docked to the right of the Start Menu. Asymmetric corner radii allow it to join seamlessly with the main panel.
 
 ---
 
@@ -60,40 +60,41 @@ Understanding the structural hierarchy of `StartMenuExperienceHost.exe` is essen
 
 Here is an architectural example demonstrating how to configure frosted glass foundations:
 
+> [!NOTE]
+> Names and values below are placeholders — define your own tokens.
+
 ```yaml
 styleConstants:
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Background=$Frosted
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
-  - CornerRadius=35
-  - SearchBoxRadius=25
-  - HoverCornerRadius=15
-  - ElementCornerRadius=10
-  - FlyoutCornerRadius=6
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8            # illustrative — choose your own scale
+  - MyRadiusLarge=16
 
 controlStyles:
-  # Collapse native drop shadow and inject frosted glass
+  # Glass main panel
+  - target: Grid#Root > Border
+    styles:
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
+
+  # Collapse native drop shadow and dismiss host
   - target: Border#DropShadowDismissTarget
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$ElementCornerRadius
-      - Margin=0
-      - Padding=0
+      - Visibility=1
 
   # Collapse secondary system shadow layers
   - target: Border#StartDropShadow, Border#RightCompanionDropShadow, Border#RootGridDropShadow
     styles:
       - Visibility=Collapsed
 
-  # Clear default system acrylic plate to prevent double-blurring
-  - target: Border#AcrylicBorder, Grid#MainMenu > Border#AcrylicBorder
+  # Collapse main-menu acrylic plate (companion acrylic is styled separately)
+  - target: Grid#MainMenu > Border#AcrylicBorder
     styles:
-      - Background:=Transparent
-      - BorderBrush:=Transparent
-      - BorderThickness=0
+      - Visibility=1
 
   # Eliminate two-tone split overlay
   - target: Border#AcrylicOverlay

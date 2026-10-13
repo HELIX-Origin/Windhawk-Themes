@@ -31,7 +31,7 @@ Building custom Windows 11 theme suites across multiple Windhawk mods often lead
 <div class="feature-grid">
 <div class="feature-card">
 <h3>Engineering Standards</h3>
-<p>Canonical "Command Center Glass" tokens, proportional radius scales, and an evidence protocol requiring selectors sourced from official reference material.</p>
+<p>Canonical design-token conventions, proportional radius scales, and an evidence protocol requiring selectors sourced from official reference material.</p>
 </div>
 <div class="feature-card">
 <h3>Hybrid Inspection Toolchain</h3>

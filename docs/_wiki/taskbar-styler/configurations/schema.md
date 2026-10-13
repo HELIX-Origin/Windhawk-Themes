@@ -46,32 +46,31 @@ The `styleConstants` list defines design tokens referenced throughout `controlSt
 
 ### Declaration Invariants
 1. **List of Strings**: Each constant entry must be formatted as `TokenName=Value` or `TokenName:=<XAML>`.
-2. **No Leading `$` in Declarations**: Writing `-$Background=...` is invalid; write `- Background=...`.
+2. **No Leading `$` in Declarations**: Writing `-$MyToken=...` is invalid; write `- MyToken=...`.
 3. **No Direct Nested Constant Declarations**: A constant cannot define another constant inside its value assignment in declaration blocks.
 4. **Ordering Convention**: Organized hierarchically:
    * **Blur & Glass Foundations**: Base `WindhawkBlur` brushes.
    * **Gradient Borders**: Top-lit rim lighting brushes (`LinearGradientBrush`).
    * **Card & Tile Fills**: Translucent fills and overlays (`AcrylicBrush`, `SolidColorBrush`).
-   * **Geometric Scale**: Border thicknesses and radius scale (`R1`, `R2`, `Height`, `Width`).
+   * **Geometric Scale**: Border thicknesses, radii, and fixed dimensions.
 
-### Concrete XAML Material Examples in `styleConstants`
+### Illustrative `styleConstants` Examples
+
+> [!NOTE]
+> The names and values below are placeholders — define your own tokens. What matters is the shape of each declaration.
 
 ```yaml
 styleConstants:
-  - Translucent=<WindhawkBlur BlurAmount="15" TintColor="#10808080"/>
-  - Glass=<WindhawkBlur BlurAmount="5" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Acrylic=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
-  - Background=$Frosted
-  - OverlayColor=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - OverlayColor2=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - AccentColor=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
-  - R1=6
-  - R2=20
-  - Height=42
-  - Width=42
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
+  - MyOverlay=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - MyAccentFill=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=6
+  - MyRadiusLarge=20
+  - MyWidth=42
+  - MyHeight=42
 ```
 
 ---

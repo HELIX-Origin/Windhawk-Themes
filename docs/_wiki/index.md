@@ -34,7 +34,7 @@ flowchart TD
 * **[Configuration Schema & Token Directives](start-menu-styler/configurations/schema.md)**: Complete YAML schema including `styleConstants`, `themeResourceVariables`, `controlStyles`, WebView2 CSS injection (`webContentStyles`), and Shell Flyout Positions integration.
 
 ### 2. Taskbar Styler (`wiki/taskbar-styler/`)
-* **[Taskbar Styler Overview](taskbar-styler/README.md)**: WinUI 3 XAML island architecture (`explorer.exe`), floating dock geometry, and visual state lighting.
+* **[Taskbar Styler Overview](taskbar-styler/README.md)**: WinUI 3 XAML island architecture (`explorer.exe`), taskbar glass surface styling, and visual state lighting.
 * **[Visual Tree Element Targets](taskbar-styler/targets/elements.md)**: Verified selectors for `TaskbarFrame`, task list button panels, active indicators, running progress bars, search boxes, system tray, and snap assist flyouts.
 * **[Configuration Schema & Token Directives](taskbar-styler/configurations/schema.md)**: Complete YAML schema, `styleConstants` mechanics, multi-state `@CommonStates` rules, and click-through options.
 * **[Companion Mods Settings Reference](taskbar-styler/companions/settings.md)**: Factory defaults and technical settings schemas for Taskbar Clock Customization, Taskbar Tray and Icon Tweaks, Dynamic Island for Windows, and Start Button Colorizer.

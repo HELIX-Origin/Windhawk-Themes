@@ -37,45 +37,55 @@ controlStyles:                         # Target selectors and styling rules appl
 
 ## 2. Deep Dive: `styleConstants` Token Mechanics
 
+### Illustrative `styleConstants` Examples
+
+> [!NOTE]
+> The names and values below are placeholders — define your own tokens. What matters is the shape of each declaration.
+
 ```yaml
 styleConstants:
   # Blur & Glass Foundations
-  - Translucent=<WindhawkBlur BlurAmount="15" TintColor="#10808080"/>
-  - Glass=<WindhawkBlur BlurAmount="5" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Acrylic=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
-  - Background=$Frosted
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="#10808080"/>
+  - MySoftFill=<WindhawkBlur BlurAmount="8" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MyOverlay=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
+  - MyBackground=$MySurfaceFill
   
   # Border Lighting & Accents
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - OverlayColor=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - AccentColor=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - ElementBackground=<SolidColorBrush Color="{ThemeResource SystemAltLowColor}" Opacity="0.25" />
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyOverlayFill=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - MyAccentFill=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
+  - MyElementFill=<SolidColorBrush Color="{ThemeResource SystemAltLowColor}" Opacity="0.25" />
   
   # Geometric Scale
-  - BorderThickness=0.3,1,0.3,1
-  - CardRadius=10        # M: SettingCard and SettingExpander cards
-  - ChipRadius=6         # S: Action buttons, dropdowns, navigation pills
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8           # Cards
+  - MyRadiusSmall=4      # Action buttons, dropdowns, navigation pills
 ```
 
 ---
 
 ## 3. Key Recipes: Applying Frosted Glass to Settings
 
+### Illustrative `styleConstants` Examples
+
+> [!NOTE]
+> The names and values below are placeholders — define your own tokens. What matters is the shape of each declaration.
+
 ```yaml
 styleConstants:
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Background=$Frosted
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
-  - CardRadius=10
-  - ChipRadius=6
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8
+  - MyRadiusSmall=4
 
 controlStyles:
   # Whole-app window background
   - target: Page#RootPage
     styles:
-      - Background:=$Background
+      - Background:=$MyBackground
 
   # Transparent sidebar pane
   - target: SplitViewPane
@@ -85,16 +95,16 @@ controlStyles:
   # Glass setting cards
   - target: SettingCard@CommonStates > Grid > Border#CardBackground
     styles:
-      - Background:=$ElementBackground
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$CardRadius
+      - Background:=$MyElementFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 
   # Glass setting expanders
   - target: SettingExpander@CommonStates > Grid > Border#HeaderBackground
     styles:
-      - Background:=$ElementBackground
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$CardRadius
+      - Background:=$MyElementFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 ```

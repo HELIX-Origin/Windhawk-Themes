@@ -42,7 +42,7 @@ For in-depth technical reference documentation, explore the dedicated subcategor
 ## 3. High-Level Hierarchy & Key Control Anchors
 
 1. **Root Window Canvas (`Page#RootPage`)**:
-   * The top-level host page for the entire Settings app. Setting `Background:=$Background` applies full frosted blur across the app canvas.
+   * The top-level host page for the entire Settings app. Setting the `Background` property applies full frosted blur across the app canvas.
 2. **Navigation Split View (`SplitView#RootSplitView`)**:
    * Separates the left navigation sidebar (`SplitViewPane`) from page content. Setting `SplitViewPane` to transparent provides a seamless unified window.
 3. **Setting Cards & Groups (`SettingCard` & `SettingExpander`)**:
@@ -54,20 +54,23 @@ For in-depth technical reference documentation, explore the dedicated subcategor
 
 ## 4. Key Recipes: Applying Frosted Glass to Settings
 
+> [!NOTE]
+> Names and values below are placeholders — define your own tokens.
+
 ```yaml
 styleConstants:
-  - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
-  - Background=$Frosted
-  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
-  - BorderThickness=0.3,1,0.3,1
-  - CardRadius=10
-  - ChipRadius=6
+  - MyBlur=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
+  - MySurfaceFill=$MyBlur
+  - MyRimBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - MyRimThickness=0,1,0,1
+  - MyRadius=8            # illustrative — choose your own scale
+  - MyRadiusLarge=16
 
 controlStyles:
   # App window background
   - target: Page#RootPage
     styles:
-      - Background:=$Background
+      - Background:=$MySurfaceFill
 
   # Transparent sidebar pane
   - target: SplitViewPane
@@ -77,16 +80,16 @@ controlStyles:
   # Glass setting cards
   - target: SettingCard@CommonStates > Grid > Border#CardBackground
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$CardRadius
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 
   # Glass setting expanders
   - target: SettingExpander@CommonStates > Grid > Border#HeaderBackground
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$CardRadius
+      - Background:=$MySurfaceFill
+      - BorderBrush:=$MyRimBrush
+      - BorderThickness=$MyRimThickness
+      - CornerRadius=$MyRadius
 ```
