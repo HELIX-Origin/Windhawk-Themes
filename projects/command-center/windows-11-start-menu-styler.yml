@@ -4,285 +4,399 @@ styleConstants:
   - Frosted=<WindhawkBlur BlurAmount="20" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.7" />
   - Acrylic=<WindhawkBlur BlurAmount="30" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity="0.8" />
   - Background=$Frosted
-  - OverlayColor=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.8" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - OverlayColor2=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - AccentColor=<AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="1" TintLuminosityOpacity="0.5" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
-  - ActiveColor=<AcrylicBrush TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="1" TintLuminosityOpacity="1" FallbackColor="{ThemeResource CardStrokeColorDefaultSolid}" />
   - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#60808080" Offset="0.0" /><GradientStop Color="#50404040" Offset="0.25" /><GradientStop Color="#40808080" Offset="1" /></LinearGradientBrush>
+  - BorderBrush2=<WindhawkBlur BlurAmount="10" TintColor="#909090" TintOpacity="0.3"/>
+  - ClockBG=<SolidColorBrush Color="{ThemeResource SystemAccentColor}" Opacity="1"/>
   - BorderThickness=0.3,1,0.3,1
-  - R1=6
-  - R2=20
-  - Height=42
-  - Width=42
+  - CornerRadius=35
+  - SearchBoxRadius=25
+  - ElementCornerRadius=10
+  - FlyoutCornerRadius=6
+  - HoverCornerRadius=15
 controlStyles:
-  - target: Taskbar.TaskbarFrame > Grid#RootGrid > Taskbar.TaskbarBackground > Grid > Rectangle#BackgroundFill
+  - target: StackPanel#TimeAndDatePanel
     styles:
-      - Visibility=1
-  - target: Rectangle#BackgroundStroke
+      - VerticalAlignment=Top
+      - HorizontalAlignment=Center
+      - RenderTransform:=<TranslateTransform X="0" />
+  - target: StackPanel#TimePanel > TextBlock#Time
     styles:
-      - Visibility=1
-  - target: Taskbar.TaskbarBackground#HoverFlyoutBackgroundControl
+      - HorizontalAlignment:=Center
+      - RenderTransform:=<TransformGroup><TranslateTransform X="-50" Y="20" /><ScaleTransform ScaleX="2.3" ScaleY="4" /></TransformGroup>
+      - FontFamily=Morganite SemiBold
+      - Foreground:=$ClockBG
+  - target: StackPanel#TimeAndDatePanel > TextBlock#Date
     styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$R1
-  - target: Taskbar.TaskListButtonPanel@CommonStates > Grid > Border#BackgroundElement, Taskbar.TaskListButtonPanel@CommonStates > Border#BackgroundElement
-    styles:
-      - Padding=6
-      - Margin=2
-      - Background@ActiveNormal:=$ActiveColor
-      - Background@ActivePointerOver:=$OverlayColor
-      - Background@ActivePressed:=$OverlayColor
-      - Background@InactiveNormal:=$Background
-      - Background@InactivePointerOver:=$OverlayColor2
-      - Background@InactivePressed:=$OverlayColor
-      - Background@MultiWindowNormal:=$Background
-      - Background@MultiWindowPointerOver:=$OverlayColor2
-      - Background@MultiWindowActive:=$ActiveColor
-      - Background@MultiWindowPressed:=$OverlayColor
-      - CornerRadius=$R1
-  - target: SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel
+      - HorizontalAlignment=Center
+      - RenderTransform:=<TranslateTransform X="0" Y="-110" />
+      - FontFamily=vivo Sans EN VF
+      - Foreground:=$ClockBG
+  - target: Grid#WidgetFrameGrid
     styles:
       - Background:=$Background
       - BorderBrush:=$BorderBrush
       - BorderThickness=$BorderThickness
-      - CornerRadius=$R1
-      - Height=$Width
-      - Height=$Height
-  - target: SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Grid > Border#BackgroundElement, SearchUx.SearchUI.SearchIconButton > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Border#BackgroundElement
+      - CornerRadius=$CornerRadius
+  - target: Grid#WidgetCanvasPanel
     styles:
-      - Visibility=1
-  - target: Grid#IconPanel@CommonStates > Border#BackgroundElement, Taskbar.TaskListLabeledButtonPanel@CommonStates > Border#BackgroundElement
+      - HorizontalAlignment=Center
+      - RenderTransform:=<TranslateTransform X="0" Y="50" />
+  - target: Grid#MediaTransportControls
     styles:
-      - Width=$Width
-      - Height=$Height
-      - Background@ActiveNormal:=$ActiveColor
-      - Background@ActivePointerOver:=$OverlayColor
-      - Background@ActivePressed:=$OverlayColor
-      - Background@InactiveNormal:=$Background
-      - Background@InactivePointerOver:=$OverlayColor2
-      - Background@InactivePressed:=$OverlayColor
-      - Background@MultiWindowNormal:=$Background
-      - Background@MultiWindowPointerOver:=$OverlayColor2
-      - Background@MultiWindowActive:=$ActiveColor
-      - Background@MultiWindowPressed:=$OverlayColor
-      - CornerRadius=$R1
-  - target: Grid#IconPanel@RunningIndicatorStates > Rectangle#RunningIndicator, Taskbar.TaskListLabeledButtonPanel@RunningIndicatorStates > Rectangle#RunningIndicator
-    styles:
-      - RadiusX=1.5
-      - RadiusY=1.5
-      - Height=4
-      - Width=12
-      - Fill:=$ActiveColor
-      - Fill@ActiveRunningIndicator:=$AccentColor
-      - Width@ActiveRunningIndicator=21
-  - target: StackPanel#SystemTrayFrameGrid, Grid#SystemTrayFrameGrid
-    styles:
-      - Height=$Height
-      - Background:=Transparent
-      - BorderBrush:=Transparent
-      - BorderThickness=0
-      - Shadow:=
-  - target: Grid#OverflowRootGrid > Border
-    styles:
-      - Padding=6
-      - Background:=Transparent
-      - BorderBrush:=Transparent
-      - BorderThickness=0
-      - Shadow:=
-  - target: Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect
-    styles:
-      - Height=8
-      - Margin=0
-      - Fill:=$OverlayColor
-  - target: Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect
-    styles:
-      - Height=8
-  - target: Windows.UI.Xaml.Controls.TextBlock#volumeLevelText
-    styles:
-      - Margin=0,-2,0,0
-  - target: Windows.UI.Xaml.Controls.Grid#VolumeConfirmator
-    styles:
-      - Padding=8,0,3,0
-      - CornerRadius=$R2
-  - target: Windows.UI.Xaml.Controls.Grid#ConfirmatorMainGrid
-    styles:
-      - Background:=Transparent
-      - BorderBrush:=Transparent
-      - BorderThickness=0
-      - Shadow:=
-  - target: Windows.UI.Xaml.Controls.Grid#BrightnessConfirmator
-    styles:
-      - Padding=25,0,17,0
-      - CornerRadius=$R2
-  - target: Microsoft.UI.Xaml.Controls.AnimatedIcon#BrightnessIcon
-    styles:
-      - Margin=0,-1,12,0
-  - target: Microsoft.UI.Xaml.Controls.ProgressBar#ProgressIndicator
-    styles:
-      - Margin=0,0,0,1
-  - target: Windows.UI.Xaml.Shapes.Rectangle#ProgressBarTrack
-    styles:
-      - Fill:=$OverlayColor
-      - RadiusX=1.5
-      - RadiusY=1.5
-  - target: Windows.UI.Xaml.Shapes.Rectangle#DeterminateProgressBarIndicator
-    styles:
-      - Fill:=$AccentColor
-  - target: Taskbar.TaskListButton#TaskListButton > Grid#IconPanel > Microsoft.UI.Xaml.Controls.ProgressBar#ProgressIndicator, Taskbar.TaskListButton#TaskListButton > Taskbar.TaskListLabeledButtonPanel#IconPanel > Microsoft.UI.Xaml.Controls.ProgressBar#ProgressIndicator
-    styles:
-      - MinHeight=4
-      - Width=26
-  - target: Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter
-    styles:
-      - Padding=6
-      - Margin=2
-      - BorderThickness=$BorderThickness
-      - BorderBrush:=$BorderBrush
       - Background:=$Background
-      - CornerRadius=$R1
-      - Shadow:=
-  - target: Taskbar.Badge#BadgeControl
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$CornerRadius
+  - target: Grid#MediaControlsContainer
     styles:
-      - Height=14
-      - MinWidth=14
+      - Visibility=0
+      - RenderTransform:=<TranslateTransform X="0" Y="-250" />
       - Margin=0,0,0,0
-      - CornerRadius=$R2
-  - target: Windows.UI.Xaml.Shapes.Rectangle#BackgroundRect
+      - CornerRadius=$CornerRadius
+  - target: FlyoutPresenter > Border#BackgroundElement
     styles:
-      - RadiusX=4
-      - RadiusY=4
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness:=$BorderThickness
+      - CornerRadius=$FlyoutCornerRadius
+      - Padding=-1
+  - target: MenuFlyoutPresenter > Border#BackgroundElement
+    styles:
+      - CornerRadius=$FlyoutCornerRadius
+  - target: Grid#AllListHeading > Microsoft.UI.Xaml.Controls.DropDownButton#ViewSelectionButton > Grid#RootGrid
+    styles:
+      - CornerRadius=$ElementCornerRadius
+      - Margin=-12,0,12,0
+  - target: MenuFlyoutItem
+    styles:
+      - CornerRadius=$FlyoutCornerRadius
+      - Margin=4,0,4,0
+  - target: ToggleMenuFlyoutItem
+    styles:
+      - CornerRadius=$FlyoutCornerRadius
+      - Margin=4,0,4,0
+  - target: Border#OverflowFlyoutBackgroundBorder
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$FlyoutCornerRadius
   - target: MenuFlyoutPresenter > Border
     styles:
       - Background:=$Background
       - BorderBrush:=$BorderBrush
       - BorderThickness=$BorderThickness
-      - CornerRadius=$R1
-  - target: MenuFlyoutSubItem
-    styles:
-      - Background:=$Background
-      - BorderBrush:=$BorderBrush
-      - BorderThickness=$BorderThickness
-      - CornerRadius=$R1
-  - target: Windows.UI.Xaml.Shapes.Rectangle#HorizontalTrackRect
-    styles:
-      - Fill:=$Background
-  - target: Windows.UI.Xaml.Shapes.Rectangle#HorizontalDecreaseRect
-    styles:
-      - Fill:=$AccentColor
+      - CornerRadius=$FlyoutCornerRadius
   - target: Grid#HoverFlyoutGrid > Border#HoverFlyoutBackground
     styles:
       - Background:=$Background
       - BorderBrush:=$BorderBrush
       - BorderThickness=$BorderThickness
-      - CornerRadius=$R1
-  - target: Taskbar.TaskbarExtensionElement
+      - CornerRadius=$FlyoutCornerRadius
+  - target: StartMenu.FolderModal#StartFolderModal > Grid#Root
     styles:
-      - RenderTransform:=<TranslateTransform X="0" Y="0" />
-  - target: Windows.UI.Xaml.Controls.Border#SnapBarBorder
+      - MaxHeight:=420
+      - MaxWidth:=420
+      - Height=Auto
+      - Width=Auto
+  - target: StartMenu.FolderModal#StartFolderModal > Grid#Root > ContentControl#ContentControl > ContentPresenter > StartMenu.UniversalTileContainer#UniversalTileContainer > Grid#GridViewContainer
+    styles:
+      - Width=360
+      - Height=400
+  - target: Grid#Root > Border
     styles:
       - Background:=$Background
       - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
       - BorderThickness=$BorderThickness
-  - target: Windows.UI.Xaml.Controls.Border#SnapPickerBorder
+      - CornerRadius=$CornerRadius
+  - target: StartMenu.ExpandedFolderList
+    styles:
+      - Margin=0,30,0,-120
+  - target: ListViewItem > Grid@CommonStates > Border#BorderBackground
+    styles:
+      - BorderThickness=$BorderThickness
+      - BorderBrush@PointerOver:=$BorderBrush
+      - BorderBrush@Pressed:=$BorderBrush
+      - CornerRadius=$ElementCornerRadius
+      - BackgroundSizing=InnerBorderEdge
+  - target: Border#ContentBorder@CommonStates > Grid > Border#BackgroundBorder
+    styles:
+      - BorderThickness=$BorderThickness
+      - BorderBrush@PointerOver:=$BorderBrush
+      - BorderBrush@Pressed:=$BorderBrush
+      - CornerRadius=$ElementCornerRadius
+      - BackgroundSizing=InnerBorderEdge
+  - target: Button > Grid@CommonStates > Border#BackgroundBorder
+    styles:
+      - BorderThickness=$BorderThickness
+      - BorderBrush@PointerOver:=$BorderBrush
+      - BorderBrush@Pressed:=$BorderBrush
+      - CornerRadius=$ElementCornerRadius
+      - BackgroundSizing=InnerBorderEdge
+  - target: Cortana.UI.Views.TaskbarSearchPage > Grid#RootGrid > Grid#OuterBorderGrid
     styles:
       - Background:=$Background
       - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
       - BorderThickness=$BorderThickness
-  - target: SystemTray.DateTimeIconContent
-    styles:
-      - FontSize=9
-  - target: TextBlock#DateInnerTextBlock
+      - CornerRadius=$CornerRadius
+  - target: Border#LayerBorder
     styles:
       - Visibility=1
-  - target: Border#VirtualDesktopBarBackground
+  - target: Border#AccentLayerBorder
+    styles:
+      - Visibility=1
+  - target: Border#dropshadow
+    styles:
+      - Visibility=1
+  - target: Border#AppBorder
+    styles:
+      - Visibility=1
+  - target: ToolTip > ContentPresenter#LayoutRoot
     styles:
       - Background:=$Background
-      - BorderThickness=$BorderThickness
       - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
-  - target: WindowsInternal.ComposableShell.Experiences.Switcher.VirtualDesktopElementThemed
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$ElementCornerRadius
+  - target: Border#AccentAppBorder
     styles:
-      - CornerRadius=$R1
-  - target: WindowsInternal.ComposableShell.Experiences.Switcher.NewVirtualDesktopElementThemed
+      - Visibility=1
+  - target: Border#LayerBorder
     styles:
-      - CornerRadius=$R1
-  - target: Windows.UI.Xaml.Controls.Border#SnapBarBorder
+      - Visibility=1
+  - target: Border#AppBorder
     styles:
       - Background:=$Background
-      - BorderThickness=$BorderThickness
       - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
-  - target: SnapLayout.SnapLayoutPickerControl
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$CornerRadius
+  - target: Grid#MainMenu > Border#AcrylicBorder
+    styles:
+      - Visibility=1
+  - target: Border#AcrylicOverlay
+    styles:
+      - Visibility=1
+  - target: StartDocked.StartSizingFrame
+    styles:
+      - Width=750
+  - target: Border#RootGridDropShadow
+    styles:
+      - Visibility=1
+  - target: Border#StartDropShadow
+    styles:
+      - Visibility=1
+  - target: Border#DropShadowDismissTarget
+    styles:
+      - Visibility=1
+  - target: Grid#UndockedRoot
+    styles:
+      - Visibility=0
+      - Width=650
+      - Canvas.ZIndex=1
+      - MaxHeight:=340
+  - target: StartDocked.SearchBoxToggleButton#StartMenuSearchBox > Grid > ContentPresenter#ContentPresenter > TextBlock#PlaceholderText
+    styles:
+      - Text=Search This Precision
+  - target: Grid#AllListHeading > TextBlock#AllListHeadingText
+    styles:
+      - Visibility=1
+  - target: Grid#TopLevelRoot > Grid
+    styles:
+      - Visibility=1
+  - target: StartDocked.NavigationPaneView#NavigationPane
+    styles:
+      - Width=550
+      - RenderTransform:=<TranslateTransform X="0" Y="10" />
+  - target: Button#ShowAllAppsButton
+    styles:
+      - Visibility=1
+  - target: Grid#TopLevelSuggestionsRoot
+    styles:
+      - Visibility=1
+  - target: StartMenu.PinnedList#StartMenuPinnedList > Grid#Root
     styles:
       - Background:=$Background
-      - BorderThickness=$BorderThickness
       - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
-  - target: SnapLayout.SnapLayoutControl
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$ElementCornerRadius
+  - target: StartMenu.SearchBoxToggleButton#SearchBoxToggleButton
+    styles:
+      - Height=50
+      - Width=350
+  - target: StartMenu.SearchBoxToggleButton#SearchBoxToggleButton > Grid > Border#BorderElement
     styles:
       - Background:=$Background
-      - BorderThickness=$BorderThickness
       - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
-  - target: SnapLayout.SnapLayoutControl@CommonStates > Windows.UI.Xaml.Controls.Border#LayoutBorder
-    styles:
-      - Background@PointerOver:=$AccentColor
-      - Background@Pressed:=$Background
-  - target: Grid#ConfirmatorMainGrid
-    styles:
-      - Background:=$Background
       - BorderThickness=$BorderThickness
-      - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
-      - Height=20
-  - target: SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel
+      - CornerRadius=$SearchBoxRadius
+  - target: Windows.UI.Xaml.Controls.Primitives.ToggleButton#ShowHideCompanion
     styles:
-      - Background:=$Background
-      - BorderThickness=$BorderThickness
-      - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
-      - Margin=0,6
-  - target: SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Grid > Border#BackgroundElement, SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Border#BackgroundElement
+      - Margin=-70,0,0,0
+  - target: Windows.UI.Xaml.Controls.Primitives.ToggleButton#ShowHideCompanion > Border
     styles:
       - Background:=Transparent
       - BorderBrush:=Transparent
       - BorderThickness=0
-      - CornerRadius=$R1
-      - Margin=4,-5,6,-5
-  - target: Taskbar.TaskListButtonPanel#ExperienceToggleButtonRootPanel
+  - target: TextBlock#PinnedListHeaderText
     styles:
-      - RenderTransform:=<TranslateTransform X="0" Y="0" />
-  - target: SearchUx.SearchUI.SearchPillButton#SearchPill > SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel
+      - Visibility=1
+  - target: Grid#AllListHeading
     styles:
-      - BorderBrush:=Transparent
-      - BorderThickness=0
-      - CornerRadius=$R1
-      - MaxWidth=150
-      - MaxHeight=$Height
-      - Width=Auto
-      - Height=Auto
-  - target: SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Grid > Border#SearchPillBackgroundElement, SearchUx.SearchUI.SearchButtonRootGrid#SearchBoxButtonRootPanel > Border#SearchPillBackgroundElement
+      - Visibility=1
+  - target: Grid#AllListHeading > TextBlock#AllListHeadingText
     styles:
+      - Visibility=1
+  - target: StartMenu.CategoryControl > Grid#RootGrid > Border
+    styles:
+      - Background:=$Background
       - BorderBrush:=$BorderBrush
-      - CornerRadius=$R1
       - BorderThickness=$BorderThickness
-      - MaxWidth=150
-      - MaxHeight=$Height
-      - Width=Auto
-      - Height=Auto
-      - Margin=-4,-5,-6,-5
-  - target: Button#GleamEntryPointButton > Border > ContentPresenter#ContentPresenter
+      - CornerRadius=$ElementCornerRadius
+  - target: Windows.UI.Xaml.Controls.Primitives.ScrollBar
     styles:
+      - Visibility=1
+  - target: StartDocked.UserTileView > StartDocked.NavigationPaneButton > Grid@CommonStates > Border
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$ElementCornerRadius
+  - target: StartDocked.PowerOptionsView > StartDocked.NavigationPaneButton > Grid@CommonStates > Border
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$CornerRadius
+  - target: Grid > LogosContainer > ItemsControl > ItemsPresenter > ItemsWrapGrid
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$CornerRadius
+  - target: StartDocked.AppListView#NavigationPanePlacesListView > Border
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$ElementCornerRadius
+      - Margin=0,0,10,0
+  - target: GridView#AllAppsGrid > ItemsWrapGrid
+    styles:
+      - Visibility=0
+  - target: Grid#TopLevelHeader > Grid > Button
+    styles:
+      - Visibility=1
+  - target: Button#SeeAllButton > Grid > Border#BackgroundBorder
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$ElementCornerRadius
+      - Margin=18,4
+  - target: Grid#MainMenu
+    styles:
+      - Width=470
+      - Height=740
+  - target: StartMenu.PinnedList#StartMenuPinnedList
+    styles:
+      - Width=360
+      - MaxHeight=400
+      - MinHeight=200
+      - Height=Auto
+  - target: GridView#PinnedList > Border > ScrollViewer
+    styles:
+      - ScrollViewer.VerticalScrollMode=2
+      - MaxHeight:=336
+      - MinHeight:=100
+      - Width=300
+      - Padding=0,15
+      - Margin=-25,0,25,0
+  - target: TextBlock#PinnedListHeaderText
+    styles:
+      - Visibility=1
+  - target: StartMenu.StartMenuCompanion#RightCompanion
+    styles:
+      - Height=700
+  - target: Grid#CompanionRoot > Border#AcrylicBorder
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$CornerRadius
+  - target: StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot > Border#AcrylicBorder
+    styles:
+      - Visibility=1
+  - target: Border#RightCompanionDropShadow
+    styles:
+      - Visibility=1
+  - target: StartDocked.StartMenuCompanion#RightCompanion > Grid#CompanionRoot
+    styles:
+      - Height=700
+      - Padding=10,0,-2,0
+  - target: Windows.UI.Xaml.Controls.Grid#ActionsBar > Windows.UI.Xaml.Controls.Button#ActionBarOverflowButton
+    styles:
+      - Background:=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=$ElementCornerRadius
+      - Height=40
+  - target: Border@CommonStates > Grid#DroppedFlickerWorkaroundWrapper > ContentPresenter > Grid > Grid#LogoContainer > Image
+    styles:
+      - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+      - RenderTransformOrigin=0.5,0.5
+  - target: Border#ContentBorder@CommonStates > Grid#DroppedFlickerWorkaroundWrapper > ContentPresenter > Grid > Grid#LogoContainer > Grid
+    styles:
+      - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+      - RenderTransformOrigin=0.5,0.5
+  - target: Grid#ContentBorder@CommonStates > Grid#DroppedFlickerWorkaroundWrapper > ContentPresenter > Grid > Grid#LogoContainer > Grid
+    styles:
+      - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+      - RenderTransformOrigin=0.5,0.5
+  - target: ScrollViewer#MenuFlyoutPresenterScrollViewer > Border > Grid > ScrollContentPresenter > ItemsPresenter > StackPanel
+    styles:
+      - ChildrenTransitions:=<TransitionCollection><EntranceThemeTransition IsStaggeringEnabled="False" FromHorizontalOffset="-25" FromVerticalOffset="0" /></TransitionCollection>
+  - target: Border@CommonStates > Grid#DroppedFlickerWorkaroundWrapper > ContentPresenter > Grid > Grid#LogoContainer > Image
+    styles:
+      - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+      - RenderTransformOrigin=0.5,0.5
+  - target: Grid#ContentBorder@CommonStates > ContentPresenter > Grid > Grid#LogoContainer > Grid
+    styles:
+      - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+      - RenderTransformOrigin=0.5,0.5
+  - target: Border#ContentBorder@CommonStates > Grid#DroppedFlickerWorkaroundWrapper > ContentPresenter#ContentPresenter > ContentControl > Grid#RootGrid > Border#LogoBackgroundPlate > Image#AllAppsItemLogo
+    styles:
+      - RenderTransform@Pressed:=<ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+      - RenderTransformOrigin=0.5,0.5
+  - target: Border#BackgroundBorder
+    styles:
+      - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
+  - target: Grid#LayoutRoot
+    styles:
+      - BackgroundTransition:=<BrushTransition Duration="0:0:0.083" />
+  - target: StartMenu.CategoryControl > Grid > Border
+    styles:
+      - BackgroundSizing=InnerBorderEdge
+  - target: Button#ZoomOutButton
+    styles:
+      - Visibility=1
+  - target: Button#ZoomInButton
+    styles:
+      - Visibility=1
+  - target: Cortana.UI.Views.CortanaRichSearchBox#SearchTextBox > Grid > Border#BorderElement
+    styles:
+      - Background=$Background
+      - BorderBrush:=$BorderBrush
+      - BorderThickness=$BorderThickness
+      - CornerRadius=6
+  - target: Border#TaskbarSearchBackground
+    styles:
+      - CornerRadius=6
       - Background:=Transparent
       - BorderBrush:=Transparent
       - BorderThickness=0
-  - target: Grid#DynamicSearchBoxGleamContainer
+  - target: Grid#SearchBoxOnTaskbarGleamContainer > Grid#SearchBoxOnTaskbarGleamImageContainer
     styles:
       - Visibility=1
-  - target: TextBlock#InnerTextBlock[Text=], TextBlock#InnerTextBlock[Text=]
+webContentStyles:
+  - target: '*'
     styles:
-      - Text=
+      - 'transition: background-color 0.083s ease-in-out !important'
