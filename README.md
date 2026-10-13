@@ -1,10 +1,12 @@
+<div align="center">
+
 # 🎛️ Windhawk Themes
 
 ![Windhawk Themes Desktop Overview](https://github.com/HELIX-Origin.png?size=200)
 
 A universal Windows 11 theme engineering framework, cohesive styling suites, and visual tree inspection toolchain built for official [Windhawk](https://windhawk.net/) styler mods.
 
-The framework delivers unified, dark/light-adaptive frosted glass and modern acrylic visual themes across Windows shell surfaces—top-lit specular gradient rims, hardware-accelerated `WindhawkBlur`, adaptive theme resource colors, proportional corner radii scaling, and a hybrid C++/Python visual tree inspection engine.
+</div>
 
 ---
 
@@ -32,7 +34,7 @@ All theme suites share canonical materials, proportional radii scales, and specu
 
 ---
 
-## 🌐 Online Documentation
+## Online Documentation
 
 The full documentation site is hosted on GitHub Pages:
 - **[Windhawk Themes Documentation Site](https://helix-origin.github.io/Windhawk-Themes/)**
