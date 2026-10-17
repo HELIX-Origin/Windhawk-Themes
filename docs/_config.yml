@@ -12,8 +12,8 @@ title: Windhawk Themes
 tagline: Universal Windows 11 Theme Engineering Framework & Wiki
 description: "A comprehensive developer framework, hybrid C++/Python inspection toolchain, and developer knowledge base for engineering cohesive Windows 11 themes across official Windhawk styler mods."
 url: "https://www.helix-origin.club"
-baseurl: "/Windhawk-Themes"
-repository: "HELIX-Origin/Windhawk-Themes"
+baseurl: "/windhawk-themes"
+repository: "HELIX-Origin/windhawk-themes"
 github_username: "HELIX-Origin"
 
 # Site branding — squircle artwork in assets/images/ (derived from windhawk.jpg)
