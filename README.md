@@ -2,7 +2,13 @@
 
 # 🎛️ Windhawk Themes
 
-![Windhawk Themes Desktop Overview](https://github.com/HELIX-Origin.png?size=200)
+<p align="center">
+  <a href="https://docs.helix-origin.club/windhawk-themes/"><img src="https://img.shields.io/badge/Docs-docs.helix--origin.club-brightgreen" alt="Documentation" height="20" /></a>
+  <a href="https://wiki.helix-origin.club/windhawk-themes/"><img src="https://img.shields.io/badge/Wiki-wiki.helix--origin.club-brightgreen" alt="Technical Wiki" height="20" /></a>
+  <a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://img.shields.io/badge/License-BSD--3--Clause-blue.svg" alt="License: BSD-3-Clause" height="20" /></a>
+  <a href="https://windhawk.net"><img src="https://img.shields.io/badge/Windhawk-Mods-blue" alt="Windhawk" height="20" /></a>
+</p>
+
 
 A universal Windows 11 theme engineering framework, cohesive styling suites, and visual tree inspection toolchain built for official [Windhawk](https://windhawk.net/) styler mods.
 
@@ -139,4 +145,4 @@ Progress is tracked via **Milestones** (`M.01`, `M.02`, `M.02b`, `M.03`) with sp
 
 ## License
 
-⚖️ BSD-3-Clause License — see [`LICENSE`](LICENSE.md) file for details.
+⚖️ BSD-3-Clause License — see [`LICENSE`](LICENSE) file for details.
