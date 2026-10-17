@@ -244,11 +244,11 @@ All changes must comply with the repository standards below:
 - **Rule 05 – Surface scope standards:** Respect process targets and WinUI 3 vs UWP boundaries.
 - **Rule 07 – Verification standards:** Mandatory static gate + user live checklist.
 - **Rule 08 – Documentation standards:** Root Markdown files + per-project `README.md` files are the canonical indexes; `docs/` hosts the GitHub Pages documentation site.
-- **Rule 09 – Milestone & sprint tracking:** Work is tracked via milestones/sprints and date/time-grouped `CHANGELOG.md` entries — the project does not use formal versioned releases. (Roadmap, sprint, and task ledgers live in the workspace agents ecosystem.)
+- **Rule 09 – Release & sprint tracking:** Work is tracked via Semantic Versioning (`v<major>.<minor>.<patch>`) and date/time-grouped `CHANGELOG.md` entries with zero attached release assets. (Roadmap, sprint, and task ledgers live in the workspace agents ecosystem.)
 
 ## Related Documentation
 
 - **Repository root:** [`README.md`](../README.md)
 - **Extras & assets:** [`extras/README.md`](extras/README.md)
 - **Validation tool:** [`tools/Test-WindhawkStyles.ps1`](../tools/Test-WindhawkStyles.ps1)
-- **Changelog:** [`CHANGELOG.md`](../CHANGELOG.md) — chronological log of completed work (entries grouped by date and time; tracked via milestones/sprints, not versioned releases)
+- **Changelog:** [`CHANGELOG.md`](../CHANGELOG.md) — chronological log of completed work (entries grouped by date and time; releases tracked via Semantic Versioning)

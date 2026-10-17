@@ -27,7 +27,7 @@ A universal Windows 11 theme engineering framework, cohesive styling suites, and
 - [Design Architecture & Materials](#design-architecture--materials)
 - [Hybrid Inspection Toolchain](#hybrid-inspection-toolchain)
 - [Quality Gates & Validation](#quality-gates--validation)
-- [Milestones & Releases](#milestones--releases)
+- [Releases & Semantic Versioning](#releases--semantic-versioning)
 - [License](#license)
 
 ---
@@ -134,12 +134,12 @@ Target: `0 errors, 0 warnings`.
 
 ---
 
-## Milestones & Releases
+## Releases & Semantic Versioning
 
-Progress is tracked via **Milestones** (`M.01`, `M.02`, `M.02b`, `M.03`) with sprint tracking for active steps:
-- **Milestone-Based Releases**: Releases use milestone tags as release identifiers rather than standard semantic versioning.
+Progress is tracked strictly via **Semantic Versioning** (`v<major>.<minor>.<patch>`):
+- **Semantic Versioning (SemVer)**: Releases use standard SemVer tags (e.g. `v0.1.0`) to mark stable checkpoints.
 - **Zero Asset Attachments**: Releases carry no attached binary or zip assets; the release is strictly the verified git tag checkpoint.
-- Active progress is recorded in [`CHANGELOG.md`](CHANGELOG.md); milestone and task tracking live in the workspace agents ecosystem ledgers (`ROADMAP.md`, `PLAN.md`, `TODO.md`, `BUGS.md`).
+- Active progress is recorded in [`CHANGELOG.md`](CHANGELOG.md); sprint tasks and long-term roadmaps live in the workspace agents ecosystem ledgers (`ROADMAP.md`, `PLAN.md`, `TODO.md`, `BUGS.md`).
 
 ---
 
