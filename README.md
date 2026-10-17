@@ -34,11 +34,11 @@ All theme suites share canonical materials, proportional radii scales, and specu
 
 ---
 
-## Online Documentation
+## Online Documentation & Technical Wiki
 
-The full documentation site is hosted on GitHub Pages:
-- **[Windhawk Themes Documentation Site](https://helix-origin.github.io/Windhawk-Themes/)**
-- Local documentation source: [`docs/`](docs/)
+The full documentation and technical wiki are hosted at:
+- **Documentation**: [docs.helix-origin.club/windhawk-themes](https://docs.helix-origin.club/windhawk-themes/)
+- **Technical Wiki**: [wiki.helix-origin.club/windhawk-themes](https://wiki.helix-origin.club/windhawk-themes/)
 
 ---
 
